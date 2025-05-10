@@ -11,14 +11,18 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="px-4 py-4 flex justify-between items-center">
-      <h1 className="text-lg md:text-2xl font-bold">
+    <nav className="px-4 pt-10 flex justify-between items-center">
+      <h1 className="text-xl md:text-3xl font-bold">
         <Link href="/">Aaditya Bajgain</Link>
       </h1>
 
       
       <div className="cursor-pointer md:hidden z-20" onClick={toggleMenu} >
-        {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+        {isOpen ? (
+          <FaTimes size={window.innerWidth >= 768 ? 24 : 16} />
+        ) : (
+          <FaBars size={window.innerWidth >= 768 ? 24 : 16} />
+        )}
       </div>
 
       
@@ -38,7 +42,7 @@ const Navbar = () => {
       </ul>
 
       {isOpen && (
-        <ul className="absolute top-16 right-4 w-full rounded-b-lg bg-white/30 dark:bg-black/30 backdrop-blur-md flex flex-col items-center gap-4 py-6 text-base shadow-md z-10 md:hidden transition-transform transform-fillS duration-500">
+        <ul className="absolute top-20 right-4 w-full rounded-b-lg bg-white/30 dark:bg-black/30 backdrop-blur-md flex flex-col items-center gap-4 py-6 text-base shadow-md z-10 md:hidden transition-transform transform-fillS duration-500">
           <li onClick={toggleMenu}>
             <Link href="/about">About</Link>
           </li>
