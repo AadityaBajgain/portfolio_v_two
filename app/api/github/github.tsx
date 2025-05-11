@@ -3,7 +3,7 @@ export async function getGithubData() {
         headers:{
             Authorization: `token ${process.env.GITHUB_TOKEN}`
         },
-        next: { revalidate: 60 },
+        next: { revalidate: 600 },
     })
     if (!res.ok) {
         throw new Error('Failed to fetch data')
