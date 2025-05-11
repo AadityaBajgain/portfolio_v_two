@@ -1,10 +1,23 @@
 "use client"
-import React, { useState } from 'react'
+import React, { useState,useEffect } from 'react'
 import Link from 'next/link'
 import { FaBars, FaTimes } from 'react-icons/fa'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
+   const [iconSize, setIconSize] = useState(16)
+  useEffect(() => {
+    // Set initial icon size
+    setIconSize(window.innerWidth >= 768 ? 24 : 16)
+
+    // Update icon size on window resize
+    const handleResize = () => {
+      setIconSize(window.innerWidth >= 768 ? 24 : 16)
+    }
+
+    window.addEventListener('resize', handleResize)
+    return () => window.removeEventListener('resize', handleResize)
+  }, [])
 
   const toggleMenu = () => {
     setIsOpen(!isOpen)
@@ -17,26 +30,26 @@ const Navbar = () => {
       </h1>
 
       
-      <div className="cursor-pointer md:hidden z-20" onClick={toggleMenu} >
+      <div className="cursor-pointer md:hidden z-20" onClick={toggleMenu}>
         {isOpen ? (
-          <FaTimes size={window.innerWidth >= 768 ? 24 : 16} />
+          <FaTimes size={iconSize} />
         ) : (
-          <FaBars size={window.innerWidth >= 768 ? 24 : 16} />
+          <FaBars size={iconSize} />
         )}
       </div>
 
       
       <ul className="hidden md:flex gap-4 text-sm md:text-base">
-        <li className="hover:text-blue-500 transition-colors">
+        <li>
           <Link href="/about">About</Link>
         </li>
-        <li className="hover:text-blue-500 transition-colors">
+        <li>
           <Link href="/projects">Projects</Link>
         </li>
-        <li className="hover:text-blue-500 transition-colors">
+        <li>
           <Link href="/experience">Experience</Link>
         </li>
-        <li className="hover:text-blue-500 transition-colors">
+        <li>
           <Link href="/contact">Contact</Link>
         </li>
       </ul>

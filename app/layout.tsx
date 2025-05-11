@@ -27,7 +27,10 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased `}
       >
-        <DotBackground children={children}/>
+        {children}
+        <div className="fixed inset-0 z-[-1]">
+          <DotBackground />
+        </div>
       </body>
     </html>
   );
