@@ -3,7 +3,8 @@ import Tools from '@/components/Tools';
 import Github from '@/components/Github';
 export default function Home() {
   return (
-    <main className="flex max-h-screen flex-col py-20">
+    <main className="flex flex-col max-h-screen py-10 sm:py-15">
+      
       <About />
       {/* <Github/> */}
       {/* <ShowRepo repos={[]}/> */}

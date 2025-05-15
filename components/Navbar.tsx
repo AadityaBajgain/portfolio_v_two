@@ -24,7 +24,7 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="px-4 pt-10 flex justify-between items-center">
+    <nav className="px-4 pt-10 flex justify-between items-center ">
       <h1 className="text-xl md:text-3xl font-bold">
         <Link href="/">Aaditya Bajgain</Link>
       </h1>

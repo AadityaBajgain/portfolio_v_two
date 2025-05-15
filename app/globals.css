@@ -43,6 +43,9 @@ body {
   h2{ 
     @apply text-2xl;
   }
+  h3{
+    @apply text-xl;
+  }
 }
 
 @layer components {
@@ -59,9 +62,9 @@ body {
     @apply text-sm text-gray-500 mt-4;
   }
   .button{
-    @apply text-white font-bold py-2 px-4 rounded;
+    @apply bg-[var(--primary)] text-white w-1/2 flex flex-row font-bold py-2 px-6 rounded-full shadow transition-colors duration-200;
   }
   .button:hover{
-    @apply text-[var(--primary)] bg-white dark:bg-slate-800;
+    @apply text-[var(--primary)] bg-white dark:bg-slate-700;
   }
 }
