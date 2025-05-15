@@ -7,7 +7,7 @@ export default function Home() {
       <About />
       {/* <Github/> */}
       {/* <ShowRepo repos={[]}/> */}
-      <Tools />
+      {/* <Tools /> */}
     </main>
   );
 }

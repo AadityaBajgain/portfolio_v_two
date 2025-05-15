@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 const About = () => {
   return (
-    <section className="max-w-4xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-10">
+    <section className="max-w-4xl mt-15 mx-auto px-6 flex flex-col sm:items-center md:flex-row justify-between items-end gap-10">
       <Image
         src="/Portfolio.webp"
         alt="photo"
