@@ -6,7 +6,7 @@ const layout = ({children}:{children:ReactNode}) => {
     <main className='flex flex-col max-h-screen gap-10'>
       <Navbar/>
       {children}
-      <Footer/>
+      {/* <Footer/> */}
     </main>
   )
 }

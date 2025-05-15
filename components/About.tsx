@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 const About = () => {
   return (
-    <section className="max-w-4xl px-6 flex flex-col md:flex-row justify-between items-center gap-10">
+    <section className="max-w-4xl mx-auto px-6 flex flex-col md:flex-row justify-between items-center gap-10">
       <Image
         src="/Portfolio.webp"
         alt="photo"
@@ -12,9 +12,10 @@ const About = () => {
         className="rounded-full opacity-90 object-cover"
       />
       <div className="text-center md:text-left max-w-xl">
-        <h1 className="text-3xl md:text-4xl font-bold">Welcome to My Portfolio</h1>
+        <h2 className='text-3xl'>Hi There!!</h2>
+        <h1 className="text-3xl md:text-4xl font-bold">I'm Aaditya Bajgain.</h1>
         <p className="text-base md:text-lg mt-4">
-          I am a passionate web developer with a knack for creating dynamic and responsive web applications. My journey in web development has been fueled by a love for technology and a desire to create impactful digital experiences.
+          I am a passionate developer with a knack for creating dynamic and responsive web applications. My journey in web development has been fueled by a love for technology and a desire to create impactful digital experiences.
         </p>
       </div>
     </section>

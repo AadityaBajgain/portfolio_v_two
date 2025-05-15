@@ -3,6 +3,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --primary: #c44834;
+  --secondary: #faf5f5;
 }
 
 @theme inline {
@@ -36,6 +38,30 @@ body {
     @apply hover:text-slate-300 cursor-pointer;
   }
   h1{
-    @apply text-3xl;
+    @apply text-3xl text-[var(--primary)];
+  }
+  h2{ 
+    @apply text-2xl;
+  }
+}
+
+@layer components {
+  .card{
+    @apply bg-white dark:bg-slate-800 shadow-md rounded-lg p-4;
+  }
+  .card-header{
+    @apply text-xl font-bold mb-2;
+  }
+  .card-body{
+    @apply text-base;
+  }
+  .card-footer{
+    @apply text-sm text-gray-500 mt-4;
+  }
+  .button{
+    @apply text-white font-bold py-2 px-4 rounded;
+  }
+  .button:hover{
+    @apply text-[var(--primary)] bg-white dark:bg-slate-800;
   }
 }
