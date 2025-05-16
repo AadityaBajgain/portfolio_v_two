@@ -3,7 +3,7 @@ import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { FaBars, FaTimes } from 'react-icons/fa'
 
-const Navbar = () => {
+const Navbar:React.FC = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [iconSize, setIconSize] = useState(16)
   useEffect(() => {

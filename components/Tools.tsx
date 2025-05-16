@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Tools = () => {
+const Tools:React.FC = () => {
   return (
     <div className='mx-auto max-w-4xl px-6 flex flex-col justify-between mb-10'>
       <h1 className='text-center mt-8 mb-4'>Tools that I Use</h1>

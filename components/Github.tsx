@@ -12,7 +12,7 @@ import GitHubCalendar from "react-github-calendar";
 import { parseISO, isAfter, isBefore } from 'date-fns';
 import { getGithubData } from '@/app/api/github/github';
 
-const Github = () => {
+const Github:React.FC = () => {
   const currentYear = new Date().getFullYear();
   const fromDate = new Date(`${currentYear}-01-01`);
   const toDate = new Date(`${currentYear}-12-31`);

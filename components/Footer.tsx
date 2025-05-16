@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Footer = () => {
+const Footer:React.FC = () => {
   return (
     <footer className="w-full mt-10 text-sm md:text-base py-2">
   <p className="text-center">

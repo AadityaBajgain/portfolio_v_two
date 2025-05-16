@@ -28,27 +28,33 @@ body {
 }
 
 @layer base {
-  *{
+  * {
     @apply m-0 p-0 box-border;
   }
-  body{
+
+  body {
     @apply max-w-[80vw] mx-auto;
   }
-  ul li{
+
+  ul li {
     @apply hover:text-slate-300 cursor-pointer;
   }
-  h1{
+
+  h1 {
     @apply text-3xl text-[var(--primary)];
   }
-  h2{ 
+
+  h2 {
     @apply text-2xl;
   }
-  h3{
+
+  h3 {
     @apply text-xl;
   }
 }
 
 @layer components {
+
   /* .card{
     @apply bg-white dark:bg-slate-800 shadow-md rounded-lg p-4;
   }
@@ -61,10 +67,28 @@ body {
   .card-footer{
     @apply text-sm text-gray-500 mt-4;
   } */
-  .button{
+  .button {
     @apply bg-[var(--primary)] text-white w-1/2 flex flex-row font-bold py-2 px-6 rounded-full shadow transition-colors duration-200;
   }
-  .button:hover{
+
+  .button:hover {
     @apply text-[var(--primary)] bg-white dark:bg-slate-700;
   }
+
+  .education-entry {
+    @apply rounded-2xl shadow-md p-6 mb-6 transition-all hover:shadow-lg bg-white dark:bg-slate-800;
+  }
+
+  .education-entry h3 {
+    @apply text-xl font-semibold ;
+  }
+
+  .education-entry p {
+    @apply text-sm text-gray-600 mt-2;
+  }
+
+  .education-entry ul {
+    @apply list-disc list-inside mt-3 space-y-1 text-gray-700 text-sm;
+  }
+
 }
