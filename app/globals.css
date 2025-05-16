@@ -72,22 +72,39 @@ body {
   }
 
   .button:hover {
-    @apply text-[var(--primary)] bg-white dark:bg-slate-700;
+    @apply text-[var(--primary)] bg-white dark:bg-slate-700 cursor-pointer;
   }
 
-  .education-entry, .experience {
-    @apply w-xl rounded-2xl shadow-md p-6 mb-6 transition-all hover:shadow-lg bg-white dark:bg-slate-800;
+  .education {
+    @apply w-full md:w-[500px] min-h-[200px] mx-auto 
+           rounded-2xl shadow-md p-6 mb-6 
+           transition-all duration-300 ease-in-out
+           bg-white/90 dark:bg-slate-800/90
+           hover:-translate-y-2 hover:shadow-xl
+           border-l-4 border-[var(--primary)];
   }
 
-  .education-entry h3, .experience h3 {
-    @apply text-xl font-semibold ;
+  .experience{
+    @apply w-full md:w-[500px] min-h-[200px] mx-auto 
+           rounded-2xl shadow-md p-6 mb-6 
+           transition-all duration-300 ease-in-out
+           bg-white/50 dark:bg-slate-900/90
+           hover:-translate-y-2 hover:shadow-xl
+           border-r-4 border-[var(--secondary)];
   }
 
-  .education-entry p, .experience p {
+  .education h3,
+  .experience h3 {
+    @apply text-xl font-semibold;
+  }
+
+  .education p,
+  .experience p {
     @apply text-sm text-gray-600 mt-2;
   }
 
-  .education-entry ul, .experience ul {
+  .education ul,
+  .experience ul {
     @apply list-disc list-inside mt-3 space-y-1 text-gray-700 text-sm;
   }
 }

@@ -6,10 +6,9 @@ import Experience from '@/components/Experience';
 export default function Home() {
   return (
     <main className="flex flex-col max-h-screen py-10 sm:py-20">
-
       <About />
       {/* <Github/> */}
-      <div className='flex flex-col md:flex-wrap md:gap-5'>
+      <div className='flex flex-col md:flex-row'>
         <Education />
         <Experience />
       </div>

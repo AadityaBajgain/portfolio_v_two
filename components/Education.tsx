@@ -27,42 +27,21 @@ const educationData: EducationItem[] = [
 
 const Education: React.FC = () => {
   return (
-    <section id="education" className="py-8">
-      <h2 className="text-2xl md:text-3xl font-bold mb-6">Education</h2>
-      <div className="grid md:grid-cols-2 gap-6">
-        {educationData.map((item, index) => (
-          <div 
-            key={index} 
-            className='education-entry'
-          >
-            <div className='flex flex-row justify-between items-center'>
-              <h3>
-                {item.school}
-              </h3>
-              <span >
-                {item.location}
-              </span>
-            </div>
-            
-            <div className='flex flex-col'>
-              <strong >{item.degree}</strong>
-              <span>
-                {item.duration}
-              </span>
-            </div>
-
-            <ul >
-              {item.highlights.map((highlight, idx) => (
-                <li 
-                  key={idx}
-                >
-                  {highlight}
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
+    <section className="py-8 w-full flex flex-col">
+      <h2 className="text-2xl md:text-3xl font-bold mb-6 mx-auto">Education</h2>
+    <div className="education">
+      <div >
+        <h3>
+          Cerritos College | Norwalk, CA
+        </h3>
+        <p className="text-gray-500">
+          A.S. in Computer Science | Jan 2025 – Present
+        </p>
+        <ul>
+          <li>Computer and Information Sciences Club.</li>
+        </ul>
       </div>
+    </div>
     </section>
   );
 };
