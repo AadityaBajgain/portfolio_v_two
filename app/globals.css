@@ -75,20 +75,19 @@ body {
     @apply text-[var(--primary)] bg-white dark:bg-slate-700;
   }
 
-  .education-entry {
-    @apply rounded-2xl shadow-md p-6 mb-6 transition-all hover:shadow-lg bg-white dark:bg-slate-800;
+  .education-entry, .experience {
+    @apply w-xl rounded-2xl shadow-md p-6 mb-6 transition-all hover:shadow-lg bg-white dark:bg-slate-800;
   }
 
-  .education-entry h3 {
+  .education-entry h3, .experience h3 {
     @apply text-xl font-semibold ;
   }
 
-  .education-entry p {
+  .education-entry p, .experience p {
     @apply text-sm text-gray-600 mt-2;
   }
 
-  .education-entry ul {
+  .education-entry ul, .experience ul {
     @apply list-disc list-inside mt-3 space-y-1 text-gray-700 text-sm;
   }
-
 }
