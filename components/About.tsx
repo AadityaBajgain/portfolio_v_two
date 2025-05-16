@@ -3,7 +3,7 @@ import Image from 'next/image'
 
 const About = () => {
   return (
-    <section className="max-w-4xl max-h-full mx-auto gap-10 flex flex-col items-center md:gap-2">
+    <section className="max-w-4xl max-h-full mx-auto gap-10 flex flex-col items-center md:gap-0 ">
       <div className='flex flex-col md:flex-row justify-around items-center gap-5 md:mt-10'>
         <Image
           src="/Portfolio.webp"
@@ -19,7 +19,7 @@ const About = () => {
             Student and aspiring software engineer
           </h3>
           <p className="text-sm mt-4">
-            I am a student at <strong>Cerritos College</strong>, pursuing a degree in Computer and Information Science. I am passionate about software development and have experience in various programming languages and frameworks. I enjoy learning new technologies and applying them to real-world projects.
+            I am a student at <strong>Cerritos College</strong>, pursuing a degree in <strong>Computer and Information Science</strong>. I am passionate about software development and have experience in various programming languages and frameworks. I enjoy learning new technologies and applying them to real-world projects.
           </p>
         </div>
       </div>

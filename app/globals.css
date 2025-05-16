@@ -49,7 +49,7 @@ body {
 }
 
 @layer components {
-  .card{
+  /* .card{
     @apply bg-white dark:bg-slate-800 shadow-md rounded-lg p-4;
   }
   .card-header{
@@ -60,7 +60,7 @@ body {
   }
   .card-footer{
     @apply text-sm text-gray-500 mt-4;
-  }
+  } */
   .button{
     @apply bg-[var(--primary)] text-white w-1/2 flex flex-row font-bold py-2 px-6 rounded-full shadow transition-colors duration-200;
   }

@@ -1,16 +1,14 @@
 "use client"
-import React, { useState,useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { FaBars, FaTimes } from 'react-icons/fa'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
-   const [iconSize, setIconSize] = useState(16)
+  const [iconSize, setIconSize] = useState(16)
   useEffect(() => {
-    // Set initial icon size
     setIconSize(window.innerWidth >= 768 ? 24 : 16)
 
-    // Update icon size on window resize
     const handleResize = () => {
       setIconSize(window.innerWidth >= 768 ? 24 : 16)
     }
@@ -24,25 +22,24 @@ const Navbar = () => {
   }
 
   return (
-    <nav className="px-4 pt-10 flex justify-between items-center ">
-      <h1 className="text-xl md:text-3xl font-bold">
-        <Link href="/">Aaditya Bajgain</Link>
-      </h1>
-
-      
-      <div className="cursor-pointer md:hidden z-20" onClick={toggleMenu}>
-        {isOpen ? (
-          <FaTimes size={iconSize} />
-        ) : (
-          <FaBars size={iconSize} />
-        )}
+    <nav className="px-4 pt-10 flex flex-col md:flex-row justfy-between items-center">
+      <div className='flex flex-row justify-between items-center w-full'>
+        <h1 className="text-xl sm:text-3xl font-bold">
+          <Link href="/">Aaditya Bajgain</Link>
+        </h1>
+        <div className="cursor-pointer md:hidden z-20" onClick={toggleMenu}>
+          {isOpen ? (
+            <FaTimes size={iconSize} />
+          ) : (
+            <FaBars size={iconSize} />
+          )}
+        </div>
       </div>
 
-      
+
+
       <ul className="hidden md:flex gap-4 text-sm md:text-base">
-        <li>
-          <Link href="/about">About</Link>
-        </li>
+
         <li>
           <Link href="/projects">Projects</Link>
         </li>
@@ -55,10 +52,7 @@ const Navbar = () => {
       </ul>
 
       {isOpen && (
-        <ul className="absolute top-20 right-4 w-full rounded-b-lg bg-white/30 dark:bg-black/30 backdrop-blur-md flex flex-col items-center gap-4 py-6 text-base shadow-md z-10 md:hidden transition-transform transform-fillS duration-500">
-          <li onClick={toggleMenu}>
-            <Link href="/about">About</Link>
-          </li>
+        <ul className="fixed top-20 left-0 w-full rounded-b-lg bg-none dark:bg-black/20 backdrop-blur-md flex flex-col items-center gap-4 py-6 text-base shadow-md z-10 md:hidden transition-transform transform-fillS duration-500">
           <li onClick={toggleMenu}>
             <Link href="/projects">Projects</Link>
           </li>
