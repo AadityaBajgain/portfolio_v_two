@@ -1,6 +1,6 @@
 import React from 'react'
 import Image from 'next/image'
-
+import Link from 'next/link'
 const About:React.FC = () => {
   return (
     <section className="max-w-4xl max-h-full mx-auto gap-10 flex flex-col items-center md:gap-0 ">
@@ -25,12 +25,11 @@ const About:React.FC = () => {
       </div>
 
       <div className="flex text-center md:text-left max-w-xl gap-4">
-        <button className='button'>Github 
-          <Image src={"/git.png"} alt="github" width={25} height={20} className="ml-2"/>
-        </button>
-        <button className='button'>LinkedIn
+        <Link href='https://github.com/AadityaBajgain' className='button'>Github 
+          <Image src={"/git.png"} alt="github" width={25} height={20} className="ml-2"/></Link>
+        <Link href='https://www.linkedin.com/in/aadityabajgain/' className='button'>LinkedIn
           <Image src={"/linkedin.png"} alt="github" width={25} height={20} className="ml-2"/>
-        </button>
+        </Link>
       </div>
     </section>
   )
