@@ -7,11 +7,9 @@ export default function Home() {
   return (
     <main className="flex flex-col max-h-screen py-10 sm:py-20">
       <About />
-      {/* <Github/> */}
-      <div className='flex flex-col md:flex-row'>
-        <Education />
-        <Experience />
-      </div>
+      <Education />
+      <Experience />
+      <Github/>
 
       {/* <ShowRepo repos={[]}/> */}
       {/* <Tools /> */}
