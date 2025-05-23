@@ -107,4 +107,28 @@ body {
   .experience ul {
     @apply list-disc list-inside mt-3 space-y-1 text-gray-700 text-sm;
   }
+
+  .github-section {
+    @apply w-full md:w-[80%] lg:w-[70%] mx-auto 
+           rounded-2xl shadow-md p-6 mb-6 
+           bg-white/90 dark:bg-slate-800/90
+           transition-all duration-300 ease-in-out;
+  }
+
+  .project-card {
+    @apply w-full mb-4 p-6
+           bg-white/80 dark:bg-slate-800/80
+           rounded-xl shadow-md
+           transition-all duration-300 ease-in-out
+           hover:-translate-y-1 hover:shadow-xl
+           border-l-4 border-[var(--primary)];
+  }
+
+  .current-project {
+    @apply w-full md:w-[80%] lg:w-[70%] mx-auto p-4
+           bg-white/90 dark:bg-slate-800/90
+           rounded-xl shadow-md
+           flex items-center gap-2
+           border-r-4 border-[var(--secondary)];
+  }
 }

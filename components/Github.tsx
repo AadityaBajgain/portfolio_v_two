@@ -11,21 +11,24 @@ const Github:React.FC = () => {
 
   
   return (
-      <div className="mt-8 mx-auto">
-        <h2 className="text-xl font-bold mb-4">GitHub Contributions</h2>
-        <GitHubCalendar
-          username="AadityaBajgain"
-          transformData={(contributions) =>
-            contributions.filter((day) => {
-              const date = parseISO(day.date);
-              return isAfter(date, fromDate) && isBefore(date, toDate);
-            })
-          }
-          blockSize={15}
-          blockMargin={5}
-          fontSize={14}
-          colorScheme="light" />
-      </div>
+    <section className="github-section">
+        <h2 className="text-2xl md:text-3xl font-bold mb-6">GitHub Contributions</h2>
+        <div className="overflow-x-auto">
+            <GitHubCalendar
+                username="AadityaBajgain"
+                transformData={(contributions) =>
+                    contributions.filter((day) => {
+                        const date = parseISO(day.date);
+                        return isAfter(date, fromDate) && isBefore(date, toDate);
+                    })
+                }
+                blockSize={12}
+                blockMargin={4}
+                fontSize={12}
+                colorScheme="light"
+            />
+        </div>
+    </section>
   )
 }
 
