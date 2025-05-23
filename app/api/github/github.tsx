@@ -10,7 +10,7 @@ export async function getGithubData() {
             'Authorization': `Token ${token}`,
             'Accept': 'application/vnd.github.v3+json'
         },
-        next: { revalidate: 600 },
+        next: { revalidate: 60 },
     });
 
     if (!res.ok) {

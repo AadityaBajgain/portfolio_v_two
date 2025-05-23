@@ -57,15 +57,15 @@ const CodingNow: React.FC = () => {
                 {formatDistanceToNow(new Date(project.lastPush), { addSuffix: true })}
               </span>
             </div>
-          </div>
           <a 
             href={`https://github.com/${project.name}`}
             target="_blank"
             rel="noopener noreferrer"
-            className="hidden group-hover:block text-xs md:text-sm text-[var(--primary)] hover:underline absolute right-4"
+            className=" text-xs md:text-sm text-[var(--primary)] hover:underline"
           >
             View on GitHub →
           </a>
+          </div>
         </div>
       ))}
     </section>
