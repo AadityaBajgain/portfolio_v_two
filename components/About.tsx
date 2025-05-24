@@ -12,27 +12,34 @@ const About:React.FC = () => {
           height={200}
           className="rounded-full opacity-90 object-cover w-1/3 sm:w-1/4 md:w-1/4 lg:w-1/4 xl:w-1/4 shadow-lg"
         />
-        <div className="text-center md:text-left max-w-xl">
-          <h2 className='text-3xl'>Hi There!!</h2>
-          <h1 className="text-3xl md:text-4xl font-bold">I'm Aaditya Bajgain.</h1>
-          <h3>
-            Student and aspiring software engineer
-          </h3>
-          <p className="text-sm mt-4">
-            I am a student at <strong>Cerritos College</strong>, pursuing a degree in <strong>Computer and Information Science</strong>. I am passionate about software development and have experience in various programming languages and frameworks. I enjoy learning new technologies and applying them to real-world projects.
-          </p>
-        </div>
-      </div>
+       <div className="space-y-4 text-center md:text-left">
+            <h1 className="gradient-text">Aaditya Bajgain</h1>
+            <h2 className="text-[var(--muted)]">Student & Software Engineer</h2>
+            <p className="text-lg leading-relaxed">
+              I am a student at <span className="text-[var(--primary)]">Cerritos College</span>,
+              pursuing a degree in Computer and Information Science. Passionate about building
+              digital experiences that make a difference.
+            </p>
 
-      <div className="flex text-center md:text-left max-w-xl gap-4">
-        <Link href='https://github.com/AadityaBajgain' className='button'>Github 
-          <Image src={"/git.png"} alt="github" width={25} height={20} className="ml-2"/></Link>
-        <Link href='https://www.linkedin.com/in/aadityabajgain/' className='button'>LinkedIn
-          <Image src={"/linkedin.png"} alt="github" width={25} height={20} className="ml-2"/>
-        </Link>
+            <div className="flex gap-4 justify-center md:justify-start">
+              <Link href="https://github.com/AadityaBajgain"
+                className="button flex items-center gap-2">
+                <Image src="/git.png" alt="GitHub" width={20} height={20} />
+                GitHub
+              </Link>
+              <Link href="https://linkedin.com/in/aadityabajgain"
+                className="button flex items-center gap-2">
+                <Image src="/linkedin.png" alt="LinkedIn" width={20} height={20} />
+                LinkedIn
+              </Link>
+            </div>
+          </div>
       </div>
     </section>
   )
 }
 
 export default About
+
+
+          

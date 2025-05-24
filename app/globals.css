@@ -1,19 +1,27 @@
 @import "tailwindcss";
 
+
 :root {
-  --background: #fafafa;
-  --foreground: #0a0a0a;
-  --primary: #2563eb;
-  --secondary: #4f46e5;
-  --accent: #f59e0b;
+  --background: #fafbfc;
+  --card-background: #ffffff;
+  --foreground: #18181b;
+  --primary: #0f766e;
+  --secondary: #6366f1;
+  --accent: #f97316;
+  --muted: #94a3b8;
+  --border: #e2e8f0;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #030712;
+    --background: #0f172a;
+    --card-background: #1e293b;
     --foreground: #f8fafc;
-    --primary: #3b82f6;
-    --secondary: #6366f1;
+    --primary: #5142d2;
+    --secondary: #818cf8;
+    --accent: #fb923c;
+    --muted: #64748b;
+    --border: #334155;
   }
 }
 
@@ -31,19 +39,17 @@
 
   h1 {
     @apply text-4xl md:text-5xl lg:text-6xl 
-           font-bold tracking-tight 
-           bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)]
-           bg-clip-text text-transparent;
+           font-bold tracking-tight;
   }
 
   h2 {
     @apply text-2xl md:text-3xl lg:text-4xl 
-           font-semibold text-[var(--primary)];
+           font-semibold;
   }
 
   h3 {
     @apply text-xl md:text-2xl 
-           font-medium text-[var(--foreground)];
+           font-medium;
   }
 
   p {
@@ -53,60 +59,41 @@
 }
 
 @layer components {
-  .button {
-    @apply inline-flex items-center justify-center
-           px-6 py-3 rounded-lg
-           bg-[var(--primary)] text-white
-           font-medium text-sm md:text-base
-           transition-all duration-300
-           hover:bg-[var(--secondary)]
-           hover:shadow-lg hover:scale-105
-           active:scale-95;
+  .section-container {
+    @apply max-w-7xl mx-auto px-4 py-16 md:py-24;
   }
 
   .card {
-    @apply bg-white/80 dark:bg-gray-800/80
+    @apply bg-[var(--card-background)] 
+           rounded-xl shadow-lg
+           border border-[var(--border)]
            backdrop-blur-sm
-           rounded-2xl shadow-xl
-           border border-gray-200 dark:border-gray-700
-           p-6 md:p-8
-           transition-all duration-300;
+           transition-all duration-300
+           hover:shadow-xl;
   }
 
-  .project-card {
-    @apply card
-           hover:scale-[1.02]
-           border-l-4 border-l-[var(--primary)];
+  .glass-card {
+    @apply bg-white/10 dark:bg-white/5
+           backdrop-filter backdrop-blur-lg
+           border border-white/20
+           rounded-xl shadow-lg;
   }
 
-  .education {
-    @apply card w-full md:w-[48%]
-           border-t-4 border-t-[var(--primary)]
-           hover:scale-[1.02];
+  .button {
+    @apply flex flex-row px-6 py-3
+           rounded-full
+           bg-[var(--primary)]
+           text-white font-medium
+           transition-all duration-300
+           hover:bg-[var(--secondary)]
+           hover:shadow-lg
+           active:scale-95
+           disabled:opacity-50
+           disabled:cursor-not-allowed;
   }
 
-  .experience {
-    @apply card w-full md:w-[48%]
-           border-t-4 border-t-[var(--secondary)]
-           hover:scale-[1.02];
-  }
-
-  .nav-link {
-    @apply text-gray-600 dark:text-gray-300
-           hover:text-[var(--primary)] dark:hover:text-[var(--primary)]
-           transition-colors duration-200
-           text-sm md:text-base font-medium;
-  }
-
-  .section {
-    @apply py-16 md:py-24 w-full;
-  }
-
-  .container {
-    @apply max-w-7xl mx-auto px-4;
-  }
-
-  .grid-layout {
-    @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+  .gradient-text {
+    @apply bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)]
+           bg-clip-text text-transparent;
   }
 }

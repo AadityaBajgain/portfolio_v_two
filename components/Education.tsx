@@ -25,25 +25,21 @@ const educationData: EducationItem[] = [
 //   },
 ];
 
-const Education: React.FC = () => {
+export default function Education() {
   return (
-    <section className="py-8 w-full flex flex-col">
-      <h2 className="text-2xl md:text-3xl font-bold mb-6 mx-auto">Education</h2>
-    <div className="education">
-      <div >
-        <h3>
-          Cerritos College | Norwalk, CA
-        </h3>
-        <p className="text-gray-500">
-          A.S. in Computer Science | Jan 2025 – Present
-        </p>
-        <ul>
-          <li>Computer and Information Sciences Club.</li>
-        </ul>
+    <div className="card p-6 md:p-8 space-y-6">
+      <h2 className="gradient-text">Education</h2>
+      <div className="space-y-4">
+        <div className="border-l-4 border-[var(--primary)] pl-4">
+          <h3>Cerritos College</h3>
+          <p className="text-[var(--muted)]">A.S. in Computer Science</p>
+          <p className="text-sm">Jan 2025 – Present</p>
+          <ul className="mt-2 space-y-2 text-sm">
+            <li>• Computer and Information Sciences Club</li>
+            <li>• Focus on software development and computer science fundamentals</li>
+          </ul>
+        </div>
       </div>
     </div>
-    </section>
-  );
-};
-
-export default Education;
+  )
+}

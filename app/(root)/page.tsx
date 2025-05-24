@@ -7,22 +7,30 @@ import CodingNow from '@/components/CurrentProjects';
 
 export default function Home() {
   return (
-    <main className="flex flex-col py-10 gap-8">
-      <div className='h-[100vh]'>
+    <main className="min-h-screen">
+      {/* Hero Section */}
+      <section className="min-h-screen flex items-center">
         <About />
-      </div>
+      </section>
 
-      <div className="h-[100vh] flex flex-col md:flex-row md:justify-between px-4">
-        <Education />
-        <Experience />
-      </div>
-      <hr/>
+      {/* Experience & Education */}
+      <section className="section-container">
+        <div className="grid md:grid-cols-2 gap-8">
+          <Education />
+          <Experience />
+        </div>
+      </section>
 
-      <div className='h-[100vh] flex flex-col md:flex-row md:justify-between px-4'>
-        <Projects />
-        <CodingNow/>
-      </div>
-      <hr/>
+      {/* Projects Section */}
+      <section className="section-container bg-gradient-to-b from-transparent to-[var(--border)]">
+        <div className="grid md:grid-cols-2 gap-8">
+          <Projects />
+          <div className="space-y-8">
+            <CodingNow />
+            <Github />
+          </div>
+        </div>
+      </section>
     </main>
   );
 }
