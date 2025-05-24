@@ -10,7 +10,7 @@ const About:React.FC = () => {
           alt="photo"
           width={200}
           height={200}
-          className="rounded-full opacity-90 object-cover w-2/5 sm:w-1/3 md:w-1/4 lg:w-1/4 xl:w-1/4 shadow-lg"
+          className="rounded-full opacity-90 object-cover w-1/3 sm:w-1/4 md:w-1/4 lg:w-1/4 xl:w-1/4 shadow-lg"
         />
         <div className="text-center md:text-left max-w-xl">
           <h2 className='text-3xl'>Hi There!!</h2>

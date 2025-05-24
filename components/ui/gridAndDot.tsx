@@ -4,7 +4,6 @@ import React from "react";
 export function DotBackground() {
   return (
     <div className="w-full h-full">
-      {/* Dotted background */}
       <div
         className={cn(
           "absolute inset-0",
