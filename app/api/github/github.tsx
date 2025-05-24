@@ -47,9 +47,9 @@ export const fetchRecentActivity = async () => {
 
   const events = await res.json();
   
-  // Filter PushEvents and create a map of unique repositories
   const repoMap = new Map();
   
+  console.log(repoMap);
   events.forEach((event: any) => {
     if (event.type === "PushEvent") {
       if (!repoMap.has(event.repo.name)) {
@@ -61,9 +61,8 @@ export const fetchRecentActivity = async () => {
       }
     }
   });
-
-  // Convert map to array and sort by most recent
+  
   return Array.from(repoMap.values())
     .sort((a, b) => b.lastPush.getTime() - a.lastPush.getTime())
-    .slice(0, 3); // Get only the 3 most recent projects
+    .slice(0, 3);
 };

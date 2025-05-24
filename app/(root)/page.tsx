@@ -13,7 +13,7 @@ export default function Home() {
         <Education />
         <Experience />
       </div>
-      <Github/>
+      {/* <Github/> */}
       <Projects />
       <CodingNow/>
     </main>
