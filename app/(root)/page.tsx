@@ -11,7 +11,6 @@ export default function Home() {
       <div className='h-[100vh]'>
         <About />
       </div>
-      {/* <hr /> */}
 
       <div className="h-[100vh] flex flex-col md:flex-row md:justify-between px-4">
         <Education />
