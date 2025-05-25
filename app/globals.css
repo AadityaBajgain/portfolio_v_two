@@ -60,7 +60,7 @@
 
 @layer components {
   .section-container {
-    @apply max-w-7xl mx-auto px-4 py-16 md:py-24;
+    @apply max-w-7xl mx-auto px-4 py-20 md:py-25;
   }
 
   .card {

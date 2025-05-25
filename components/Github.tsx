@@ -11,7 +11,7 @@ const Github:React.FC = () => {
 
   
   return (
-    <section className="github-section">
+    <div className="github-section">
         <h2 className="text-2xl md:text-3xl font-bold mb-6">GitHub Contributions</h2>
         <div className="overflow-x-auto">
             <GitHubCalendar
@@ -28,7 +28,7 @@ const Github:React.FC = () => {
                 colorScheme="light"
             />
         </div>
-    </section>
+    </div>
   )
 }
 

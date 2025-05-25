@@ -1,13 +1,18 @@
 "use client"
 import { useState, useEffect } from 'react';
-import { getGithubData } from '@/app/api/github/github';
+// import { getGithubData } from '@/app/api/github/github';
+// import pinnedRepos from '@/app/api/github/pinnedRepos';
 
 interface Repo {
-    id: number;
     name: string;
     description: string;
-    html_url: string;
-    language: string;
+    url: string;
+    stargazerCount: number;
+    forkCount: number;
+    primaryLanguage: {
+        name: string;
+        color: string;
+    } | null;
 }
 
 const Projects: React.FC = () => {
@@ -18,8 +23,10 @@ const Projects: React.FC = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const data = await getGithubData();
-                setRepos(data.props.repos);
+                const response = await fetch('/api/github/pinnedRepos');
+                const data = await response.json();
+                setRepos(await data.json());
+
             } catch (error) {
                 setError(error as Error);
             } finally {
@@ -39,10 +46,10 @@ const Projects: React.FC = () => {
     console.log(repos);
     return (
         <section className="github-section">
-            <h2 className="text-2xl md:text-3xl font-bold mb-6">Projects</h2>
+            <h2 className="text-2xl md:text-3xl font-bold mb-6">My Pinned Github Repos</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                {repos.map((repo) => (
-                    <div className="project-card" key={repo.id}>
+                {repos.map((repo, index) => (
+                    <div className="project-card" key={index}>
                         <h3 className="text-lg md:text-xl font-bold text-[var(--primary)]">
                             {repo.name}
                         </h3>
@@ -50,11 +57,17 @@ const Projects: React.FC = () => {
                             {repo.description}
                         </p>
                         <div className="mt-4 flex items-center justify-between">
-                            <span className="text-xs md:text-sm px-2 py-1 bg-slate-100 dark:bg-slate-700 rounded">
-                                {repo.language}
-                            </span>
-                            <a 
-                                href={repo.html_url}
+                            {repo.primaryLanguage && (
+                                <span className="flex items-center gap-1">
+                                    <span
+                                        className="w-3 h-3 rounded-full"
+                                        style={{ backgroundColor: repo.primaryLanguage.color }}
+                                    ></span>
+                                    {repo.primaryLanguage.name}
+                                </span>
+                            )}
+                            <a
+                                href={repo.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="text-sm md:text-base text-[var(--primary)] hover:underline"

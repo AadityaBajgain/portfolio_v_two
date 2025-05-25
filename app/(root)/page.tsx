@@ -9,7 +9,7 @@ export default function Home() {
   return (
     <main className="min-h-screen">
       {/* Hero Section */}
-      <section className="min-h-screen flex items-center">
+      <section className="min-h-screen">
         <About />
       </section>
 
@@ -22,14 +22,15 @@ export default function Home() {
       </section>
 
       {/* Projects Section */}
-      <section className="section-container bg-gradient-to-b from-transparent to-[var(--border)]">
+      <section className="bg-gradient-to-b from-transparent to-[var(--border)] grid md:grid-cols-2">
         <div className="grid md:grid-cols-2 gap-8">
           <Projects />
-          <div className="space-y-8">
+        </div>
+          <div className="flex flex-col justify-center items-center space-y-6">
             <CodingNow />
             <Github />
           </div>
-        </div>
+        
       </section>
     </main>
   );

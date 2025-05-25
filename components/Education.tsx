@@ -1,21 +1,7 @@
 import React from 'react';
 
-type EducationItem = {
-  school: string;
-  location: string;
-  degree: string;
-  duration: string;
-  highlights: string[];
-};
 
-const educationData: EducationItem[] = [
-  {
-    school: 'Cerritos College',
-    location: 'Norwalk, CA',
-    degree: 'A.S. in Computer Science',
-    duration: 'Jan 2025 – Present',
-    highlights: ['Computer and Information Science Club'],
-  },
+
 //   {
 //     school: 'University of Southern Mississippi',
 //     location: 'Hattiesburg, MS',
@@ -23,7 +9,6 @@ const educationData: EducationItem[] = [
 //     duration: 'Aug 2024 – Dec 2024',
 //     highlights: ['GPA: 4.00', 'President’s List', 'Google Developers Club'],
 //   },
-];
 
 export default function Education() {
   return (

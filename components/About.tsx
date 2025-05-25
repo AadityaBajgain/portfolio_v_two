@@ -3,8 +3,8 @@ import Image from 'next/image'
 import Link from 'next/link'
 const About:React.FC = () => {
   return (
-    <section className="max-w-4xl max-h-full mx-auto gap-10 flex flex-col items-center md:gap-0 ">
-      <div className='flex flex-col md:flex-row justify-around items-center gap-5 md:mt-10'>
+    <section className="section-container max-w-4xl max-h-full mx-auto gap-10 flex flex-col items-center md:gap-0 ">
+      <div className='flex flex-col md:flex-row justify-around items-center gap-10'>
         <Image
           src="/Portfolio.webp"
           alt="photo"
