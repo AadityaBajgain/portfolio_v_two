@@ -1,4 +1,3 @@
-// pages/api/pinned.ts
 import type { NextApiRequest, NextApiResponse } from "next";
 
 interface Repo {
