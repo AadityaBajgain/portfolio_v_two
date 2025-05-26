@@ -1,3 +1,17 @@
+
+import type { NextApiRequest, NextApiResponse } from "next";
+
+interface Repo {
+  name: string;
+  description: string;
+  url: string;
+  stargazerCount: number;
+  forkCount: number;
+  primaryLanguage: {
+    name: string;
+    color: string;
+  } | null;
+}
 export async function getGithubData() {
     const token = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
     
@@ -7,10 +21,10 @@ export async function getGithubData() {
 
     const res = await fetch('https://api.github.com/users/AadityaBajgain/repos', {
         headers: {
-            'Authorization': `Token ${token}`,
+            'Authorization': `Bearer ${token}`,
             'Accept': 'application/vnd.github.v3+json'
         },
-        next: { revalidate: 60 },
+        next: { revalidate: 0 },
     });
 
     if (!res.ok) {
@@ -66,3 +80,53 @@ export const fetchRecentActivity = async () => {
     .sort((a, b) => b.lastPush.getTime() - a.lastPush.getTime())
     .slice(0, 3);
 };
+
+export default async function pinnedRepos(
+  req: NextApiRequest,
+  res: NextApiResponse<Repo[] | { error: string }>
+) {
+  const GITHUB_TOKEN = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
+  const username = "AadityaBajgain";
+
+  const query = `
+    {
+      user(login: "${username}") {
+        pinnedItems(first: 6, types: [REPOSITORY]) {
+          edges {
+            node {
+              ... on Repository {
+                name
+                description
+                url
+                stargazerCount
+                forkCount
+                primaryLanguage {
+                  name
+                  color
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  `;
+
+  const response = await fetch("https://api.github.com/graphql", {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${GITHUB_TOKEN}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({ query }),
+  });
+
+  if (!response.ok) {
+    const text = await response.text(); // read HTML error page
+    console.error("GitHub Error Response:", text);
+    return res.status(500).json({ error: "GitHub API request failed" });
+  }
+
+  const json = await response.json();
+
+}

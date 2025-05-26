@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { formatDistanceToNow } from 'date-fns';
-import { fetchRecentActivity } from '@/app/api/github/github';
+import { fetchRecentActivity } from '@/app/api/github/route';
 
 interface RecentProject {
   name: string;

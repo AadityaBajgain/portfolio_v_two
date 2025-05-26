@@ -1,7 +1,6 @@
 "use client"
 import { useState, useEffect } from 'react';
-// import { getGithubData } from '@/app/api/github/github';
-// import pinnedRepos from '@/app/api/github/pinnedRepos';
+
 
 interface Repo {
     name: string;
@@ -23,9 +22,9 @@ const Projects: React.FC = () => {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch('/api/github/pinnedRepos');
+                const response = await fetch('/api/github/pinnedRepos.ts');
                 const data = await response.json();
-                setRepos(await data.json());
+                setRepos(data);
 
             } catch (error) {
                 setError(error as Error);
