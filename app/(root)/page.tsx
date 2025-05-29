@@ -7,7 +7,7 @@ import CodingNow from '@/components/CurrentProjects';
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <section className="min-h-screen">
+      <section className="section-container">
         <About />
       </section>
 

@@ -1,29 +1,4 @@
 
-export async function getGithubData() {
-    const token = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
-    
-    if (!token) {
-        throw new Error('GitHub token is not configured');
-    }
-
-    const res = await fetch('https://api.github.com/users/AadityaBajgain', {
-        headers: {
-            'Authorization': `Bearer ${token}`,
-            'Accept': 'application/vnd.github.v3+json'
-        },
-        next: { revalidate: 0 },
-    });
-
-    if (!res.ok) {
-        const error = await res.json();
-        throw new Error(`GitHub API error: ${res.status} - ${error}`);
-    }
-    const response = await res.json();
-    console.log(res);
-
-    return { props: { response } };
-}
-
 export const fetchLastPush = async () => {
   const res = await fetch(`https://api.github.com/users/AadityaBajgain/events/public`);
   const events = await res.json();
@@ -69,8 +44,8 @@ export const fetchRecentActivity = async () => {
     .slice(0, 3);
 };
 
-const GITHUB_TOKEN = process.env.NEXT_PUBLIC_GITHUB_TOKEN; // 🔒 Replace with your GitHub token
-const GITHUB_USERNAME = 'AadityaBajgain';  // ✏️ Replace with your GitHub username
+const GITHUB_TOKEN = process.env.NEXT_PUBLIC_GITHUB_TOKEN; 
+const GITHUB_USERNAME = 'AadityaBajgain'; 
 
 const query = `
 {
@@ -81,8 +56,7 @@ const query = `
           name
           description
           url
-          stargazerCount
-          forkCount
+          updatedAt
           primaryLanguage {
             name
             color
@@ -105,7 +79,7 @@ export async function fetchPinnedRepos() {
   });
 
   const json = await response.json();
-
+  console.log(json);
   if (json.errors) {
     console.error('GraphQL errors:', json.errors);
     return;

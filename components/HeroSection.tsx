@@ -13,12 +13,9 @@ const About:React.FC = () => {
           className="rounded-full opacity-90 object-cover w-1/3 sm:w-1/4 md:w-1/4 lg:w-1/4 xl:w-1/4 shadow-lg"
         />
        <div className="space-y-4 text-center md:text-left">
-            <h1 className="gradient-text">Aaditya Bajgain</h1>
-            <h2 className="text-[var(--muted)]">Student & Software Engineer</h2>
-            <p className="text-lg leading-relaxed">
-            Enthusiast software developer, passionate about experimenting with new technologies and constantly learning to create innovative solutions.
-            </p>
-
+            <h1>Hey!</h1>
+            <h1 className="gradient-text">I'm Aaditya Bajgain</h1>
+            <h2 className="text-[var(--muted)]">An Inspiring Student & Software Engineer</h2>
             <div className="flex gap-4 justify-center md:justify-start">
               <Link href="https://github.com/AadityaBajgain"
                 className="button flex items-center gap-2">

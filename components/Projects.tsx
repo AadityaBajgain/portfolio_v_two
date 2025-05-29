@@ -1,7 +1,7 @@
 "use client"
 import React, {useState,useEffect} from "react";
 
-import { getGithubData,fetchPinnedRepos } from "@/app/api/github/route";
+import {fetchPinnedRepos } from "@/app/api/github/route";
 
 interface repos{
     name:String,
@@ -14,7 +14,7 @@ const Projects:React.FC =()=>{
         const fetchData = async () => {
             try{
                 const reposData = await fetchPinnedRepos();
-                setRepos(reposData.props.json.data.user.pinnedItems.nodes);
+                setRepos(reposData!.props.json.data.user.pinnedItems.nodes);
             } catch (error) {
                 console.error('Error fetching repos:', error);
             }
