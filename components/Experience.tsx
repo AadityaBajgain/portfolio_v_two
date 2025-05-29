@@ -3,10 +3,10 @@ import React from "react";
 
 const Experience: React.FC = () => {
   return (
-    <div className="card p-6 md:p-8 space-y-6">
+    <div className="rounded-md p-6 md:p-8 space-y-6 hover:shadow-slate-400 shadow-lg bottom-2 right-2 transition-all duration-300">
       <h2 className="gradient-text">Experience</h2>
 
-      <div className="space-y-4">
+      <div className="space-y-4 ">
 
         <div
 

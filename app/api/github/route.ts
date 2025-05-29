@@ -50,7 +50,7 @@ const GITHUB_USERNAME = 'AadityaBajgain';
 const query = `
 {
   user(login: "${GITHUB_USERNAME}") {
-    pinnedItems(first: 4, types: REPOSITORY) {
+    pinnedItems(last:4, types: REPOSITORY) {
       nodes {
         ... on Repository {
           name

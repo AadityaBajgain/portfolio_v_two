@@ -55,12 +55,12 @@ const CodingNow: React.FC = () => {
   }
 
   return (
-    <div className="card p-6 md:p-8 space-y-6">
-      <h2 className="gradient-text">Recent Projects</h2>
+    <div className="p-6 md:p-8 space-y-6">
+      <h2 className="gradient-text">Currently Working Projects </h2>
       
       {/* Last Push Status */}
       {lastPush && (
-        <div className="glass-card p-4 mb-4 border-l-4 border-[var(--primary)]">
+        <div className="glass-card p-4 mb-4 ">
           <div className="flex items-center gap-2">
             {/* <span className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></span> */}
             <span className="text-sm">
@@ -84,9 +84,9 @@ const CodingNow: React.FC = () => {
         {projects.map((project, index) => (
           <div 
             key={index}
-            className="glass-card p-4 hover:shadow-lg transition-all duration-300"
+            className="glass-card p-4 border-l-4 border-[var(--primary)] hover:shadow-slate-400 shadow-lg bottom-2 right-2 transition-all duration-300"
           >
-            <div className="flex items-center gap-2 w-full">
+            <div className="flex items-center gap-2 w-full ">
               <span className={`w-3 h-3 rounded-full ${
                 index === 0 ? 'bg-green-500 animate-pulse' : 'bg-yellow-500'
               }`}></span>

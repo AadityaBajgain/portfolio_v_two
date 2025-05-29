@@ -24,7 +24,7 @@ const About:React.FC = () => {
               </Link>
               <Link href="https://linkedin.com/in/aadityabajgain"
                 className="button flex items-center gap-2">
-                <Image src="/linkedin.png" alt="LinkedIn" width={20} height={20} />
+                <Image src="/linkedin.png" alt="LinkedIn" width={20} height={20}/>
                 LinkedIn
               </Link>
             </div>
