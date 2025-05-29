@@ -1,85 +1,40 @@
 "use client"
-import { useState, useEffect } from 'react';
+import React, {useState,useEffect} from "react";
 
+import { getGithubData,fetchPinnedRepos } from "@/app/api/github/route";
 
-interface Repo {
-    name: string;
-    description: string;
-    url: string;
-    stargazerCount: number;
-    forkCount: number;
-    primaryLanguage: {
-        name: string;
-        color: string;
-    } | null;
+interface repos{
+    name:String,
+    description:String | null,
 }
+const Projects:React.FC =()=>{
+    const [repos,setRepos] = useState<repos[]>([]);
 
-const Projects: React.FC = () => {
-    const [repos, setRepos] = useState<Repo[]>([]);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState<Error | null>(null);
-
-    useEffect(() => {
+    useEffect(()=>{
         const fetchData = async () => {
-            try {
-                const response = await fetch('/api/github/pinnedRepos.ts');
-                const data = await response.json();
-                setRepos(data);
-
+            try{
+                const reposData = await fetchPinnedRepos();
+                setRepos(reposData.props.json.data.user.pinnedItems.nodes);
             } catch (error) {
-                setError(error as Error);
-            } finally {
-                setLoading(false);
+                console.error('Error fetching repos:', error);
             }
         };
-
         fetchData();
-    }, []);
-
-    if (loading) {
-        return <div>Loading...</div>;
-    }
-    if (error) {
-        return <div>Error: {error.message}</div>;
-    }
+    },[])
     console.log(repos);
-    return (
-        <section className="github-section">
-            <h2 className="text-2xl md:text-3xl font-bold mb-6">My Pinned Github Repos</h2>
+    return(
+        <div>
+            <h2 className="text-2xl md:text-3xl font-bold mb-6">Projects</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {repos.map((repo, index) => (
-                    <div className="project-card" key={index}>
-                        <h3 className="text-lg md:text-xl font-bold text-[var(--primary)]">
-                            {repo.name}
-                        </h3>
-                        <p className="text-sm md:text-base mt-2 text-gray-600 dark:text-gray-300">
-                            {repo.description}
-                        </p>
-                        <div className="mt-4 flex items-center justify-between">
-                            {repo.primaryLanguage && (
-                                <span className="flex items-center gap-1">
-                                    <span
-                                        className="w-3 h-3 rounded-full"
-                                        style={{ backgroundColor: repo.primaryLanguage.color }}
-                                    ></span>
-                                    {repo.primaryLanguage.name}
-                                </span>
-                            )}
-                            <a
-                                href={repo.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-sm md:text-base text-[var(--primary)] hover:underline"
-                            >
-                                View on GitHub
-                            </a>
-                        </div>
+                    <div key={index} className="p-4 border rounded-lg hover:shadow-lg transition-shadow duration-300">
+                        <h3 className="text-xl font-semibold">{repo.name}</h3>
+                        <p className="text-gray-600">{repo.description || 'No description available'}</p>
                     </div>
                 ))}
             </div>
-        </section>
-    );
-
+        </div>
+    )
 }
 
 export default Projects;

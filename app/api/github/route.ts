@@ -1,17 +1,4 @@
 
-import type { NextApiRequest, NextApiResponse } from "next";
-
-interface Repo {
-  name: string;
-  description: string;
-  url: string;
-  stargazerCount: number;
-  forkCount: number;
-  primaryLanguage: {
-    name: string;
-    color: string;
-  } | null;
-}
 export async function getGithubData() {
     const token = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
     
@@ -19,7 +6,7 @@ export async function getGithubData() {
         throw new Error('GitHub token is not configured');
     }
 
-    const res = await fetch('https://api.github.com/users/AadityaBajgain/repos', {
+    const res = await fetch('https://api.github.com/users/AadityaBajgain', {
         headers: {
             'Authorization': `Bearer ${token}`,
             'Accept': 'application/vnd.github.v3+json'
@@ -28,12 +15,13 @@ export async function getGithubData() {
     });
 
     if (!res.ok) {
-        const error = await res.text();
+        const error = await res.json();
         throw new Error(`GitHub API error: ${res.status} - ${error}`);
     }
+    const response = await res.json();
+    console.log(res);
 
-    const repos = await res.json();
-    return { props: { repos } };
+    return { props: { response } };
 }
 
 export const fetchLastPush = async () => {
@@ -81,52 +69,50 @@ export const fetchRecentActivity = async () => {
     .slice(0, 3);
 };
 
-export default async function pinnedRepos(
-  req: NextApiRequest,
-  res: NextApiResponse<Repo[] | { error: string }>
-) {
-  const GITHUB_TOKEN = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
-  const username = "AadityaBajgain";
+const GITHUB_TOKEN = process.env.NEXT_PUBLIC_GITHUB_TOKEN; // 🔒 Replace with your GitHub token
+const GITHUB_USERNAME = 'AadityaBajgain';  // ✏️ Replace with your GitHub username
 
-  const query = `
-    {
-      user(login: "${username}") {
-        pinnedItems(first: 6, types: [REPOSITORY]) {
-          edges {
-            node {
-              ... on Repository {
-                name
-                description
-                url
-                stargazerCount
-                forkCount
-                primaryLanguage {
-                  name
-                  color
-                }
-              }
-            }
+const query = `
+{
+  user(login: "${GITHUB_USERNAME}") {
+    pinnedItems(first: 4, types: REPOSITORY) {
+      nodes {
+        ... on Repository {
+          name
+          description
+          url
+          stargazerCount
+          forkCount
+          primaryLanguage {
+            name
+            color
           }
         }
       }
     }
-  `;
+  }
+}
+`;
 
-  const response = await fetch("https://api.github.com/graphql", {
-    method: "POST",
+export async function fetchPinnedRepos() {
+  const response = await fetch('https://api.github.com/graphql', {
+    method: 'POST',
     headers: {
-      Authorization: `Bearer ${GITHUB_TOKEN}`,
-      "Content-Type": "application/json",
+      'Authorization': `bearer ${GITHUB_TOKEN}`,
+      'Content-Type': 'application/json',
     },
     body: JSON.stringify({ query }),
   });
 
-  if (!response.ok) {
-    const text = await response.text(); // read HTML error page
-    console.error("GitHub Error Response:", text);
-    return res.status(500).json({ error: "GitHub API request failed" });
-  }
-
   const json = await response.json();
 
+  if (json.errors) {
+    console.error('GraphQL errors:', json.errors);
+    return;
+  }
+
+  return(
+    {props:json}
+  )
 }
+

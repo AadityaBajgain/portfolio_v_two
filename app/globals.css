@@ -63,17 +63,14 @@
     @apply max-w-7xl mx-auto px-4 py-20 md:py-25;
   }
 
-  .card {
-    @apply bg-[var(--card-background)] 
-           rounded-xl shadow-lg
-           border border-[var(--border)]
-           backdrop-blur-sm
+  /* .card {
+    @apply
            transition-all duration-300
            hover:shadow-xl;
-  }
+  } */
 
   .glass-card {
-    @apply bg-white/10 dark:bg-white/5
+    @apply
            backdrop-filter backdrop-blur-lg
            border border-white/20
            rounded-xl shadow-lg;

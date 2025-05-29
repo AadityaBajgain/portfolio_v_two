@@ -12,7 +12,7 @@ import React from 'react';
 
 export default function Education() {
   return (
-    <div className="card p-6 md:p-8 space-y-6">
+    <div className="p-6 md:p-8 space-y-6">
       <h2 className="gradient-text">Education</h2>
       <div className="space-y-4">
         <div className="border-l-4 border-[var(--primary)] pl-4">
