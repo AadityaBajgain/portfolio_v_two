@@ -3,14 +3,17 @@ import Image from 'next/image'
 import Link from 'next/link'
 const About:React.FC = () => {
   return (
-    <section className="section-container max-w-4xl max-h-full mx-auto gap-10 flex flex-col items-center md:gap-0 ">
+    <section className="section-container mx-auto gap-10 flex flex-col items-center md:gap-0 ">
       <div className='flex flex-col md:flex-row justify-around items-center gap-10'>
         <Image
           src="/Portfolio.webp"
           alt="photo"
           width={200}
           height={200}
-          className="rounded-full opacity-90 object-cover w-1/3 sm:w-1/4 md:w-1/4 lg:w-1/4 xl:w-1/4 shadow-lg"
+          className="rounded-full opacity-90 object-cover w-1/3 md:w-1/4 lg:w-1/4 xl:w-1/4 shadow-lg"
+          priority
+          loading="eager"
+          draggable={false}
         />
        <div className="space-y-4 text-center md:text-left">
             <h1>Hey!</h1>

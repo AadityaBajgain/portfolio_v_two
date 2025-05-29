@@ -3,7 +3,7 @@ import Navbar from '@/components/Navbar'
 
 const layout = ({children}:{children:ReactNode}) => {
   return (
-    <main className='flex flex-col max-h-screen gap-10'>
+    <main className='flex flex-col max-h-screen'>
       <Navbar/>
       {children}
       {/* <Footer/> */}
