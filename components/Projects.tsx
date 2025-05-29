@@ -23,7 +23,7 @@ const Projects:React.FC =()=>{
     },[])
     console.log(repos);
     return(
-        <div>
+        <div className="space-y-6">
             <h2 className="text-2xl md:text-3xl font-bold mb-6">Projects</h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {repos.map((repo, index) => (

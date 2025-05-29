@@ -16,9 +16,7 @@ const About:React.FC = () => {
             <h1 className="gradient-text">Aaditya Bajgain</h1>
             <h2 className="text-[var(--muted)]">Student & Software Engineer</h2>
             <p className="text-lg leading-relaxed">
-              I am a student at <span className="text-[var(--primary)]">Cerritos College</span>,
-              pursuing a degree in Computer and Information Science. Passionate about building
-              digital experiences that make a difference.
+            Enthusiast software developer, passionate about experimenting with new technologies and constantly learning to create innovative solutions.
             </p>
 
             <div className="flex gap-4 justify-center md:justify-start">

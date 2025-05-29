@@ -39,8 +39,8 @@ const CodingNow: React.FC = () => {
   }
 
   return (
-    <section className="w-full md:w-[80%] lg:w-[70%] mx-auto space-y-4">
-      <h2 className="text-2xl md:text-3xl font-bold mb-6">Recent Activity</h2>
+    <div className="p-6 md:p-8 space-y-6">
+      <h2 className="gradient-text">Recent Projects</h2>
       {projects.map((project, index) => (
         <div 
           key={index}
@@ -68,7 +68,7 @@ const CodingNow: React.FC = () => {
           </div>
         </div>
       ))}
-    </section>
+    </div>
   );
 };
 
