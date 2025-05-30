@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-const About:React.FC = () => {
+const HeroSection:React.FC = () => {
   return (
     <section className="section-container mx-auto gap-10 flex flex-col items-center md:gap-0 ">
       <div className='flex flex-col md:flex-row justify-around items-center gap-10'>
@@ -10,7 +10,7 @@ const About:React.FC = () => {
           alt="photo"
           width={200}
           height={200}
-          className="rounded-full opacity-90 object-cover w-1/3 md:w-1/4 lg:w-1/4 xl:w-1/4 shadow-lg"
+          className="rounded-full opacity-90 object-cover w-[35vw] sm:w-1/3 md:w-1/4 lg:w-1/4 xl:w-1/4 shadow-lg"
           priority
           loading="eager"
           draggable={false}
@@ -37,7 +37,7 @@ const About:React.FC = () => {
   )
 }
 
-export default About
+export default HeroSection;
 
 
           

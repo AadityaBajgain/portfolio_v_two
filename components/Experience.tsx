@@ -13,12 +13,13 @@ const Experience: React.FC = () => {
           className="border-l-4 border-[var(--primary)] pl-4"
         >
           <h3>Student Developer</h3>
-          <p className="text-[var(--muted)]">Student Developer</p>
+          <p className="text-[var(--muted)]">Self-Taught</p>
           <p className="text-sm">2023 - Present</p>
           <ul className="mt-2 space-y-2 text-sm">
 
-            <li>• Built and tested responsive, accessible, and secure web apps using SDLC principles</li>
-            <li>• Managed basic QA workflows, including test documentation and validation on staging branches</li>
+            <li>• Developed interactive full-stack web applications by building projects like MoneyMap (personal finance tracker) and prepview (AI-powered interview prep app), using JavaScript/TypeScript, React, and API integrations.</li>
+            <li>• Created engaging user interfaces and enhanced personal branding by designing and deploying portfolio websites and productivity tools, using modern frontend frameworks, Vercel for deployment, and responsive web technologies.</li>
+            <li>• Integrated third-party and AI services into web products by leveraging APIs such as OpenWeather and Google Gemini, using RESTful API consumption and real-time data visualization techniques.</li>
 
           </ul>
         </div>
