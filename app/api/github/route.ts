@@ -1,4 +1,3 @@
-// GitHub Event Types
 interface GitHubEvent {
   type: string;
   repo: {
@@ -43,7 +42,7 @@ const query = `
 }
 `;
 
-export async function fetchPinnedRepos() {
+export const fetchPinnedRepos=async ()=> {
   const response = await fetch('https://api.github.com/graphql', {
     method: 'POST',
     headers: {
