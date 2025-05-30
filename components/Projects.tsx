@@ -49,7 +49,7 @@ const Projects: React.FC = () => {
 
   return (
     <div className="p-6 md:p-8 space-y-6">
-      <h2 className="gradient-text">GitHub's Pinned Repos</h2>
+      <h2 className="gradient-text">GitHub&apos;s Pinned Repos</h2>
       <div className="space-y-4">
         {repos.map((repo, index) => (
           <div

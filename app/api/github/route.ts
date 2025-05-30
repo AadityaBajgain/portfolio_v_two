@@ -2,7 +2,7 @@
 export const fetchLastPush = async () => {
   const res = await fetch(`https://api.github.com/users/AadityaBajgain/events/public`);
   const events = await res.json();
-  const pushEvent = events.find((e: any) => e.type === "PushEvent");
+  const pushEvent = events.find((e: Event) => e.type === "PushEvent");
   return {
     repo: pushEvent.repo.name,
     time: new Date(pushEvent.created_at),
@@ -27,7 +27,8 @@ export const fetchRecentActivity = async () => {
   const repoMap = new Map();
   
   console.log(repoMap);
-  events.forEach((event: any) => {
+  events.forEach((event: any
+  ) => {
     if (event.type === "PushEvent") {
       if (!repoMap.has(event.repo.name)) {
         repoMap.set(event.repo.name, {

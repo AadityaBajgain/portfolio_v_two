@@ -17,7 +17,7 @@ const HeroSection:React.FC = () => {
         />
        <div className="space-y-4 text-center md:text-left">
             <h1>Hey!</h1>
-            <h1 className="gradient-text">I'm Aaditya Bajgain</h1>
+            <h1 className="gradient-text">I&apos;m Aaditya Bajgain</h1>
             <h2 className="text-[var(--muted)]">An Inspiring Student & Software Engineer</h2>
             <div className="flex gap-4 justify-center md:justify-start">
               <Link href="https://github.com/AadityaBajgain"
