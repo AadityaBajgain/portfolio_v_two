@@ -82,12 +82,13 @@ export const fetchLastPush = async () => {
     }
 
     const events = await res.json() as GitHubEvent[];
+    console.log("events", events);
     const pushEvent = events.find((e) => e.type === "PushEvent");
 
     if (!pushEvent) {
       throw new Error("No recent push events found");
     }
-
+    // console.log("last push",new Date(pushEvent.created_at))
     return {
       repo: pushEvent.repo.name,
       time: new Date(pushEvent.created_at),
