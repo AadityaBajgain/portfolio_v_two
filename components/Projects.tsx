@@ -1,6 +1,6 @@
 "use client"
 import React, { useState, useEffect } from "react";
-import { fetchPinnedRepos } from "@/app/api/github/route";
+import { fetchPinnedRepos } from "@/lib/action/github";
 
 interface Repository {
   name: string;
