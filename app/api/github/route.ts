@@ -44,7 +44,7 @@ const query = `
 }
 `;
 
-// API Route Handler
+
 export async function GET() {
   try {
     const [pinnedRepos, lastPush, recentActivity] = await Promise.all([
@@ -66,7 +66,7 @@ export async function GET() {
   }
 }
 
-async function fetchPinnedRepos() {
+export async function fetchPinnedRepos() {
   const response = await fetch('https://api.github.com/graphql', {
     method: 'POST',
     headers: {
@@ -85,7 +85,7 @@ async function fetchPinnedRepos() {
   return json.data.user.pinnedItems.nodes;
 }
 
-async function fetchLastPush() {
+export async function fetchLastPush() {
   const res = await fetch(
     `https://api.github.com/users/${GITHUB_USERNAME}/events/public`,
     { next: { revalidate: 60 } } // Cache for 1 minute
@@ -108,7 +108,7 @@ async function fetchLastPush() {
   };
 }
 
-async function fetchRecentActivity() {
+export async function fetchRecentActivity() {
   const res = await fetch(
     `https://api.github.com/users/${GITHUB_USERNAME}/events/public`,
     {
