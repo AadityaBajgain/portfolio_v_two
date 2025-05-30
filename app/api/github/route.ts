@@ -1,3 +1,5 @@
+import { NextResponse } from 'next/server';
+
 interface GitHubEvent {
   type: string;
   repo: {
@@ -18,8 +20,8 @@ interface Repository {
   commits: number;
 }
 
-const GITHUB_TOKEN = process.env.NEXT_PUBLIC_GITHUB_TOKEN; 
-const GITHUB_USERNAME = 'AadityaBajgain'; 
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+const GITHUB_USERNAME = 'AadityaBajgain';
 
 const query = `
 {
@@ -42,7 +44,29 @@ const query = `
 }
 `;
 
-export const fetchPinnedRepos=async ()=> {
+// API Route Handler
+export async function GET() {
+  try {
+    const [pinnedRepos, lastPush, recentActivity] = await Promise.all([
+      fetchPinnedRepos(),
+      fetchLastPush(),
+      fetchRecentActivity()
+    ]);
+
+    return NextResponse.json({
+      pinnedRepos,
+      lastPush,
+      recentActivity
+    });
+  } catch (error) {
+    return NextResponse.json(
+      { error: 'Failed to fetch GitHub data' },
+      { status: 500 }
+    );
+  }
+}
+
+async function fetchPinnedRepos() {
   const response = await fetch('https://api.github.com/graphql', {
     method: 'POST',
     headers: {
@@ -50,22 +74,27 @@ export const fetchPinnedRepos=async ()=> {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({ query }),
+    next: { revalidate: 3600 } // Cache for 1 hour
   });
 
   const json = await response.json();
-  console.log(json);
   if (json.errors) {
-    console.error('GraphQL errors:', json.errors);
-    return;
+    throw new Error(`GraphQL errors: ${JSON.stringify(json.errors)}`);
   }
 
-  return(
-    {props:json}
-  )
+  return json.data.user.pinnedItems.nodes;
 }
 
-export const fetchLastPush = async () => {
-  const res = await fetch(`https://api.github.com/users/AadityaBajgain/events/public`);
+async function fetchLastPush() {
+  const res = await fetch(
+    `https://api.github.com/users/${GITHUB_USERNAME}/events/public`,
+    { next: { revalidate: 60 } } // Cache for 1 minute
+  );
+  
+  if (!res.ok) {
+    throw new Error(`GitHub API error: ${res.status}`);
+  }
+
   const events = await res.json() as GitHubEvent[];
   const pushEvent = events.find((e) => e.type === "PushEvent");
   
@@ -77,16 +106,19 @@ export const fetchLastPush = async () => {
     repo: pushEvent.repo.name,
     time: new Date(pushEvent.created_at),
   };
-};
+}
 
-export const fetchRecentActivity = async () => {
-  const token = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
-  const res = await fetch(`https://api.github.com/users/AadityaBajgain/events/public`, {
-    headers: {
-      'Authorization': `Bearer ${token}`,
-      'Accept': 'application/vnd.github.v3+json'
+async function fetchRecentActivity() {
+  const res = await fetch(
+    `https://api.github.com/users/${GITHUB_USERNAME}/events/public`,
+    {
+      headers: {
+        'Authorization': `Bearer ${GITHUB_TOKEN}`,
+        'Accept': 'application/vnd.github.v3+json'
+      },
+      next: { revalidate: 60 } // Cache for 1 minute
     }
-  });
+  );
   
   if (!res.ok) {
     throw new Error(`GitHub API error: ${res.status}`);
@@ -110,5 +142,5 @@ export const fetchRecentActivity = async () => {
   return Array.from(repoMap.values())
     .sort((a, b) => b.lastPush.getTime() - a.lastPush.getTime())
     .slice(0, 3);
-};
+}
 
