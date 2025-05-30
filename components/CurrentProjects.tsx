@@ -38,6 +38,9 @@ const CodingNow: React.FC = () => {
     };
 
     fetchData();
+
+    const interval = setInterval(fetchData, 5000);
+    return () => clearInterval(interval);
   }, []);
 
   if (loading) {
@@ -58,11 +61,9 @@ const CodingNow: React.FC = () => {
     <div className="p-6 md:p-8 space-y-6">
       <h2 className="gradient-text">Currently Working Projects </h2>
       
-      {/* Last Push Status */}
       {lastPush && (
         <div className="glass-card p-4 mb-4 ">
           <div className="flex items-center gap-2">
-            {/* <span className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></span> */}
             <span className="text-sm">
               Last commit to{' '}
               <a 
