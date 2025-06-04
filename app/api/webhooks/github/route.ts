@@ -15,8 +15,10 @@ export async function GET(){
     message: 'GitHub webhook endpoint is ready to receive POST requests.'
   })
 }
+
 export async function POST(req: Request) {
   const rawBody = await req.text();
+  console.log('Raw body:', rawBody);
   const signature = req.headers.get('x-hub-signature-256') || '';
 
   const hmac = crypto.createHmac('sha256', GITHUB_SECRET);
