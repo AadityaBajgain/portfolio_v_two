@@ -1,5 +1,4 @@
-// pages/api/latest-push.ts
-import type { NextApiRequest, NextApiResponse } from 'next';
+import { NextResponse } from 'next/server';
 import { Redis } from '@upstash/redis';
 
 const redis = new Redis({
@@ -7,12 +6,22 @@ const redis = new Redis({
   token: process.env.UPSTASH_REDIS_REST_TOKEN!,
 });
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  const data = await redis.get('latest-push');
-
-  if (!data) {
-    return res.status(404).json({ error: 'No push data found.' });
+export async function GET() {
+  try {
+    const data = await redis.get('latest-push');
+    
+    if (!data) {
+      return NextResponse.json(
+        { error: 'No push data found.' },
+        { status: 404 }
+      );
+    }
+    console.log("Latest push data:", data);
+    return NextResponse.json(data);
+  } catch (error) {
+    return NextResponse.json(
+      { error: 'Failed to fetch push data' },
+      { status: 500 }
+    );
   }
-
-  res.status(200).json(data);
 }
