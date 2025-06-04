@@ -16,7 +16,7 @@ export async function GET(){
   })
 }
 
-export async function POST(req: Request) {
+export async function POST(req: Request){
   const rawBody = await req.text();
   // console.log('Raw body:', rawBody);
   const signature = req.headers.get('x-hub-signature-256') || '';
