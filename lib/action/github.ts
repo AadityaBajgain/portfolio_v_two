@@ -1,23 +1,23 @@
 
-interface GitHubEvent {
-  type: string;
-  repo: {
-    name: string;
-  };
-  created_at: string;
-  payload: {
-    commits?: Array<{
-      message: string;
-      sha: string;
-    }>;
-  };
-}
+// interface GitHubEvent {
+//   type: string;
+//   repo: {
+//     name: string;
+//   };
+//   created_at: string;
+//   payload: {
+//     commits?: Array<{
+//       message: string;
+//       sha: string;
+//     }>;
+//   };
+// }
 
-interface Repository {
-  name: string;
-  lastPush: Date;
-  commits: number;
-}
+// interface Repository {
+//   name: string;
+//   lastPush: Date;
+//   commits: number;
+// }
 
 const GITHUB_TOKEN = process.env.NEXT_PUBLIC_GITHUB_TOKEN;
 const GITHUB_USERNAME = 'AadityaBajgain';
