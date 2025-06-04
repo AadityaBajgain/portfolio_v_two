@@ -19,6 +19,7 @@ export async function GET() {
     console.log("Latest push data:", data);
     return NextResponse.json(data);
   } catch (error) {
+    console.error("Redis error:", error);
     return NextResponse.json(
       { error: 'Failed to fetch push data' },
       { status: 500 }

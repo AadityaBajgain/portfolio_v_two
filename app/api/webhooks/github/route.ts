@@ -1,4 +1,4 @@
-// app/api/webhooks/github/route.ts
+
 import { NextResponse } from 'next/server';
 import { Redis } from '@upstash/redis';
 import crypto from 'crypto';
@@ -9,6 +9,12 @@ const redis = new Redis({
   token: process.env.UPSTASH_REDIS_REST_TOKEN!,
 });
 
+export async function GET(){
+  return Response.json({
+    success: true,
+    message: 'GitHub webhook endpoint is ready to receive POST requests.'
+  })
+}
 export async function POST(req: Request) {
   const rawBody = await req.text();
   const signature = req.headers.get('x-hub-signature-256') || '';
@@ -16,12 +22,13 @@ export async function POST(req: Request) {
   const hmac = crypto.createHmac('sha256', GITHUB_SECRET);
   const digest = 'sha256=' + hmac.update(rawBody).digest('hex');
 
-  const isValid = crypto.timingSafeEqual(
-    Buffer.from(signature),
-    Buffer.from(digest)
-  );
+  const sigBuffer = Buffer.from(signature);
+  const digestBuffer = Buffer.from(digest);
 
-  if (!isValid) {
+  console.log('Incoming signature:', signature);
+console.log('Expected digest:', digest);
+
+  if (sigBuffer.length !== digestBuffer.length || !crypto.timingSafeEqual(sigBuffer, digestBuffer)) {
     return NextResponse.json({ error: 'Invalid signature' }, { status: 401 });
   }
 
@@ -35,7 +42,7 @@ export async function POST(req: Request) {
     };
 
     await redis.set('latest-push', pushInfo);
-    console.log('Saved to Redis:', pushInfo);
+    console.log('✅ Saved to Redis:', pushInfo);
   }
 
   return NextResponse.json({ status: 'Webhook received' });

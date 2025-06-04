@@ -18,7 +18,7 @@ const CodingNow: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const res = await fetch('/api/webhooks/github/latest-push');
+        const res = await fetch('/api/latest-push');
         if (!res.ok) {
           throw new Error(`HTTP error! status: ${res.status}`);
         }
