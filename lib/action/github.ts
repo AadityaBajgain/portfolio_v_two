@@ -41,7 +41,8 @@ const query = `
     }
   }
 }
-`;export const fetchPinnedRepos = async () => {
+`;
+export const fetchPinnedRepos = async () => {
   try {
     const response = await fetch('https://api.github.com/graphql', {
       method: 'POST',
@@ -126,10 +127,11 @@ export const fetchRecentActivity = async () => {
         }
       }
     });
-
-    return Array.from(repoMap.values())
-      .sort((a, b) => b.lastPush.getTime() - a.lastPush.getTime())
-      .slice(0, 3);
+    const returnRepos = Array.from(repoMap.values())
+    .sort((a, b) => b.lastPush.getTime() - a.lastPush.getTime())
+    .slice(0, 3);
+    console.log("repoMap", returnRepos);
+    return returnRepos
   } catch (error) {
     console.error('Failed to fetch recent activity:', error);
     return [];

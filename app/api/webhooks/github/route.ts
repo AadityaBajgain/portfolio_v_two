@@ -1,29 +1,50 @@
-import { NextRequest, NextResponse } from 'next/server';
+import type { NextApiRequest, NextApiResponse } from 'next';
 import crypto from 'crypto';
+import { Redis } from '@upstash/redis';
 
-const WEBHOOK_SECRET = process.env.GITHUB_WEBHOOK_SECRET!;
+const GITHUB_SECRET = process.env.GITHUB_WEBHOOK_SECRET!;
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL!,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
+});
 
-function isSignatureValid(signature: string, payload: string) {
-  const hmac = crypto.createHmac('sha256', WEBHOOK_SECRET);
-  const digest = 'sha256=' + hmac.update(payload).digest('hex');
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
+function verifySignature(req: NextApiRequest, body: string) {
+  const signature = req.headers['x-hub-signature-256'] as string;
+  const hmac = crypto.createHmac('sha256', GITHUB_SECRET);
+  const digest = 'sha256=' + hmac.update(body).digest('hex');
   return crypto.timingSafeEqual(Buffer.from(signature), Buffer.from(digest));
 }
 
-export async function POST(req: NextRequest) {
-  const rawBody = await req.text();
-  const signature = req.headers.get('x-hub-signature-256') || '';
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method !== 'POST') return res.status(405).end('Method Not Allowed');
 
-  if (!isSignatureValid(signature, rawBody)) {
-    return new NextResponse('Invalid signature', { status: 401 });
-  }
+  let body = '';
+  req.on('data', (chunk) => { body += chunk; });
+  req.on('end', async () => {
+    if (!verifySignature(req, body)) {
+      return res.status(401).end('Invalid signature');
+    }
 
-  const event = req.headers.get('x-github-event');
-  const payload = JSON.parse(rawBody);
+    const payload = JSON.parse(body);
+    if (payload && payload.head_commit) {
+      const pushInfo = {
+        repo: payload.repository.full_name,
+        message: payload.head_commit.message,
+        time: payload.head_commit.timestamp,
+        url: payload.head_commit.url,
+      };
 
-  if (event === 'push') {
-    console.log('📦 Push to:', payload.repository.full_name);
-    // Optionally: Revalidate ISR pages or update DB/cache here
-  }
+      // ✅ Save to Upstash Redis
+      await redis.set('latest-push', pushInfo);
+      console.log('Saved to Redis:', pushInfo);
+    }
 
-  return new NextResponse('ok', { status: 200 });
+    res.status(200).end('Webhook received');
+  });
 }
