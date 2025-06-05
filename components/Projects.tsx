@@ -90,6 +90,7 @@ const Projects: React.FC = () => {
           </div>
         ))}
       </div>
+      <span className="text-xs text-[var(--muted)]">Fetched repos using Github GraphQL API</span>
     </div>
   );
 };

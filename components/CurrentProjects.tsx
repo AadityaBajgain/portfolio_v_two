@@ -56,7 +56,16 @@ const CodingNow: React.FC = () => {
   }
 
   if (error) {
-    return <div className="card p-6 text-red-500">Error: {error.message}</div>;
+    return (
+      <div>
+        <div className="card p-6 text-red-500">Error: {error.message}</div>
+        <p className='text-sm text-[var(--muted)]'>
+          Playing around with Github webhooks for the latest commit...
+          <br />
+          <span>Still trying to figure it out...</span>
+        </p>
+      </div>
+    )
   }
 
   return (
