@@ -37,7 +37,7 @@ const CodingNow: React.FC = () => {
     fetchData();
 
     // Set up polling interval
-    const intervalId = setInterval(fetchData, 10000);
+    const intervalId = setInterval(fetchData, 60000); // Fetch every 60 seconds
 
     // Cleanup function
     return () => clearInterval(intervalId);
