@@ -78,16 +78,16 @@ const CodingNow: React.FC = () => {
             <div>
               <div className="flex items-center gap-2">
                 <span className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></span>
-                <p className="text-sm flex flex-col">
+                <p className="text-sm flex flex-col md:flex-row ">
                   <span>Last commit to{' '}
-                  <a
-                    href={`https://github.com/${lastPush.repo}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="font-semibold text-[var(--primary)] hover:underline"
-                  >
-                    {lastPush.repo.split('/')[1]}
-                  </a>{' '}
+                    <a
+                      href={`https://github.com/${lastPush.repo}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-semibold text-[var(--primary)] hover:underline"
+                    >
+                      {lastPush.repo.split('/')[1]}&nbsp;
+                    </a>
                   </span>
                   {formatDistanceToNow(new Date(lastPush.time), { addSuffix: true })}
                 </p>
@@ -99,7 +99,7 @@ const CodingNow: React.FC = () => {
               href={lastPush.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-[var(--primary)] hover:underline text-sm"
+              className="text-[var(--primary)] hover:underline text-xs"
             >
               View Commit →
             </a>
@@ -109,21 +109,21 @@ const CodingNow: React.FC = () => {
       )}
       <div className="flex flex-col gap-2">
         <span>On going Project based on the latest commit</span>
-              <div className="flex items-center justify-between p-4 border-l-4 border-[var(--primary)]  hover:shadow-slate-400 shadow-lg bottom-2 right-2 transition-all duration-300">
-                <h3 className="font-semibold">
-                  {lastPush!.repo.split('/')[1]}
-                </h3>
-                <a
-                  href={`https://github.com/AadityaBajgain/${lastPush!.repo.split('/')[1]}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[var(--primary)] hover:underline text-sm"
-                >
-                  View →
-                </a>
-              </div>
-            </div>
-          </div>  );
+        <div className="flex items-center justify-between p-4 border-l-4 border-[var(--primary)]  hover:shadow-slate-400 shadow-lg bottom-2 right-2 transition-all duration-300">
+          <h3 className="font-semibold">
+            {lastPush!.repo.split('/')[1]}
+          </h3>
+          <a
+            href={`https://github.com/AadityaBajgain/${lastPush!.repo.split('/')[1]}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[var(--primary)] hover:underline text-sm"
+          >
+            View →
+          </a>
+        </div>
+      </div>
+    </div>);
 };
 
 export default CodingNow;
