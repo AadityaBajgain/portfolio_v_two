@@ -5,11 +5,11 @@ const redis = new Redis({
   url: process.env.UPSTASH_REDIS_REST_URL!,
   token: process.env.UPSTASH_REDIS_REST_TOKEN!,
 });
-
+// console.log(await redis)
 export async function GET() {
   try {
     const data = await redis.get('latest-push');
-    
+    // console.log("Fetched data from Redis:", data);
     if (!data) {
       return NextResponse.json(
         { error: 'No push data found.' },
