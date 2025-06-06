@@ -7,7 +7,9 @@ const redis = new Redis({
   url: process.env.UPSTASH_REDIS_REST_URL!,
   token: process.env.UPSTASH_REDIS_REST_TOKEN!,
 });
-
+export async function GET(){
+  return Response.json({ message: 'This is a POST endpoint for GitHub webhooks.' }, { status: 200 });
+}
 export async function POST(req: Request) {
   console.log('🎯 Webhook received at:', new Date().toISOString());
   
@@ -18,7 +20,7 @@ export async function POST(req: Request) {
     
     console.log('📦 Payload:', rawBody.slice(0, 200) + '...');
     console.log('🔑 Event Type:', event);
-
+    console.log('🔐 Signature:', signature);
     // Verify signature
     const hmac = crypto.createHmac('sha256', GITHUB_SECRET);
     const digest = 'sha256=' + hmac.update(rawBody).digest('hex');

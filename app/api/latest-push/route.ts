@@ -16,7 +16,7 @@ export async function GET() {
         { status: 404 }
       );
     }
-    console.log("Latest push data:", data);
+    // console.log("Latest push data:", data);
     return NextResponse.json(data);
   } catch (error) {
     console.error("Redis error:", error);
