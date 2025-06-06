@@ -73,13 +73,13 @@ const CodingNow: React.FC = () => {
       <h2 className="gradient-text">Currently Working On</h2>
 
       {lastPush && (
-        <div className="glass-card p-4">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+        <div >
+          <div className="glass-card flex flex-col px-6 py-2 md:flex-row md:items-center md:justify-between gap-2">
             <div>
               <div className="flex items-center gap-2">
                 <span className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></span>
-                <span className="text-sm">
-                  Last commit to{' '}
+                <p className="text-sm flex flex-col">
+                  <span>Last commit to{' '}
                   <a
                     href={`https://github.com/${lastPush.repo}`}
                     target="_blank"
@@ -88,10 +88,12 @@ const CodingNow: React.FC = () => {
                   >
                     {lastPush.repo.split('/')[1]}
                   </a>{' '}
+                  </span>
                   {formatDistanceToNow(new Date(lastPush.time), { addSuffix: true })}
-                </span>
+                </p>
               </div>
-              <p className="text-xs text-[var(--muted)] mt-1">{lastPush.message}</p>
+              <p className="text-xs text-[var(--muted)] mt-1"><strong>Commit message: </strong>
+                {lastPush.message}</p>
             </div>
             <a
               href={lastPush.url}
@@ -102,10 +104,26 @@ const CodingNow: React.FC = () => {
               View Commit →
             </a>
           </div>
+          <span className='text-xs text-[var(--muted)]'>Powered by github webhook and redis</span>
         </div>
       )}
-    </div>
-  );
+      <div className="flex flex-col gap-2">
+        <span>On going Project based on the latest commit</span>
+              <div className="flex items-center justify-between p-4 border-l-4 border-[var(--primary)]  hover:shadow-slate-400 shadow-lg bottom-2 right-2 transition-all duration-300">
+                <h3 className="font-semibold">
+                  {lastPush!.repo.split('/')[1]}
+                </h3>
+                <a
+                  href={`https://github.com/AadityaBajgain/${lastPush!.repo.split('/')[1]}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[var(--primary)] hover:underline text-sm"
+                >
+                  View →
+                </a>
+              </div>
+            </div>
+          </div>  );
 };
 
 export default CodingNow;

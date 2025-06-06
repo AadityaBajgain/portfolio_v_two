@@ -54,7 +54,7 @@ const Projects: React.FC = () => {
         {repos.map((repo, index) => (
           <div
             key={index}
-            className="glass-card p-4 border-l-4 border-[var(--primary)]  hover:shadow-slate-400 shadow-lg bottom-2 right-2 transition-all duration-300"
+            className=" p-4 border-l-4 border-[var(--primary)]  hover:shadow-slate-400 shadow-lg bottom-2 right-2 transition-all duration-300"
           >
             <div className="flex flex-col gap-2">
               <div className="flex items-center justify-between">
