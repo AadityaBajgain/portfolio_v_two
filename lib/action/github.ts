@@ -137,3 +137,56 @@ export const fetchPinnedRepos = async () => {
 //     return [];
 //   }
 // };
+
+
+const hostQuery = `{
+  user(login: "${GITHUB_USERNAME}") {
+    repositories(first: 10, orderBy: {field: UPDATED_AT, direction: DESC}) {
+      nodes {
+        name
+        description
+        url
+        homepageUrl
+        updatedAt
+        primaryLanguage {
+          name
+          color
+        }
+        visibility
+        isArchived
+      }
+    }
+  }
+}`;
+
+export const fetchRepoWebsites = async () => {
+  try {
+    const response = await fetch('https://api.github.com/graphql', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${GITHUB_TOKEN}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ query: hostQuery }),
+    });
+
+    const json = await response.json();
+
+    if (json.errors) {
+      console.error('GraphQL errors:', json.errors);
+      return null;
+    }
+
+    // Filter only repos with homepageUrl
+    const reposWithSites = json.data.user.repositories.nodes.filter(
+      (repo: any) => repo.homepageUrl && !repo.isArchived
+    );
+
+    return {
+      websites: reposWithSites
+    };
+  } catch (error) {
+    console.error('Failed to fetch repo websites:', error);
+    return null;
+  }
+};

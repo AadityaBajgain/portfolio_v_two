@@ -1,29 +1,12 @@
-import React from 'react'
+"use client"
 
-const Tools:React.FC = () => {
+import React from "react";
+
+
+const Tools = () => {
   return (
-    <div className='mx-auto max-w-4xl px-6 flex flex-col justify-between mb-10'>
-      <h1 className='text-center mt-8 mb-4'>Tools that I Use</h1>
-        <p className='text-center text-sm md:text-xl max-w-2xl mx-auto'>
-            I use a variety of tools and technologies to build web applications. Here are some of the key tools that I frequently use in my development process: 
-        </p>
-        <div className=''>
-            <ul>
-            <li className='button'>
-                <strong>Frontend:</strong>
-            </li>
-            <li className='button'>
-                <strong>Backend:</strong> 
-            </li>
-            <li className='button'>
-                <strong>Version Control:</strong>
-            </li>
-            <li className='button'>
-                 <strong>Deployment:</strong>
-            </li>
-            </ul>
-        </div>
-        
+    <div className="p-6 md:p-8 space-y-6">
+      <h2 className="gradient-text">Languages that I work On</h2>
     </div>
   )
 }

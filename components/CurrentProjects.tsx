@@ -2,6 +2,9 @@
 
 import React, { useState, useEffect } from 'react';
 import { formatDistanceToNow } from 'date-fns';
+import {
+  fetchRepoWebsites,
+} from '@/lib/action/github';
 
 interface LastPush {
   repo: string;
@@ -10,10 +13,17 @@ interface LastPush {
   url: string;
 }
 
+interface RepoWebsite {
+  name: string;
+  homepageUrl: string;
+  description: string;
+}
+
 const CodingNow: React.FC = () => {
   const [lastPush, setLastPush] = useState<LastPush | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
+  const [websites, setWebsites] = useState<RepoWebsite[]>([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,8 +44,25 @@ const CodingNow: React.FC = () => {
     };
 
     fetchData();
-    const intervalId = setInterval(fetchData, 60000); // Poll every 60s
+    const intervalId = setInterval(fetchData, 60000);
     return () => clearInterval(intervalId);
+  }, []);
+
+  useEffect(() => {
+    const fetchWebsites = async () => {
+      try {
+        const response = await fetchRepoWebsites();
+        if (!response) {
+          throw new Error('Failed to fetch repo websites');
+        }
+        setWebsites(response.websites);
+      } catch (error) {
+        console.error('Failed to fetch repo websites:', error);
+        setError(error as Error);
+      }
+    };
+
+    fetchWebsites();
   }, []);
 
   if (loading) {
@@ -63,6 +90,11 @@ const CodingNow: React.FC = () => {
     );
   }
 
+  // Update your iframe to use the website URL if available
+  const currentRepo = websites.find(site =>
+    site.name === lastPush?.repo.split('/')[1]
+  );
+
   return (
     <div className="p-6 md:p-8 space-y-6">
       <h2 className="gradient-text">Currently Working On</h2>
@@ -73,7 +105,7 @@ const CodingNow: React.FC = () => {
             <div>
               <div className="flex items-center gap-2">
                 <span className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></span>
-                <div className="text-sm flex flex-col md:flex-row items-center gap-1">
+                <div className="text-sm flex flex-col">
                   <span>
                     Last commit to{' '}
                     <span className="relative group inline-block">
@@ -86,11 +118,11 @@ const CodingNow: React.FC = () => {
                         {lastPush.repo.split('/')[1]}&nbsp;
                       </a>
                       <div className="absolute left-0 top-full z-50 hidden group-hover:block w-[300px] mt-2">
-                        <div className="bg-[var(--card-background)] rounded-lg shadow-xl border border-[var(--border)] overflow-hidden transition-all duration-300 ease-in-out">
+                        <div className="bg-[var(--card-background)] rounded-lg shadow-xl border border-white  overflow-hidden transition-all duration-300 ease-in-out">
                           <iframe
-                            src="https://portfolio-v-two-nine.vercel.app"
-                            width="100%"
-                            height="200px"
+                            src={currentRepo?.homepageUrl}
+                            width="300"
+                            height="200"
                             className="rounded-lg"
                             loading="lazy"
                           />

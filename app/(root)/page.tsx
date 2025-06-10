@@ -4,6 +4,7 @@ import Projects from '@/components/Projects';
 import CodingNow from '@/components/CurrentProjects';
 import HeroSection from '@/components/HeroSection';
 import Footer from '@/components/Footer';
+import Tools from '@/components/Tools';
 
 export default function Home() {
   return (
@@ -28,6 +29,14 @@ export default function Home() {
           <CodingNow />
         </div>
       </section>
+
+      <section className="section-container">
+        <h1 className='mb-5'>My Tools</h1>
+        <div>
+          <Tools />
+        </div>
+      </section>
+
       <Footer />
     </main>
   );
