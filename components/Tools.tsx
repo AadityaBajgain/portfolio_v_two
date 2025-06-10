@@ -31,7 +31,7 @@ const Tools = () => {
       </div>
       <div>
         <h2 className="gradient-text">
-          frameworks and that I use
+          frameworks that I use
         </h2>
         <div className="mt-5">
           <Image
