@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@microlink/mql": "^0.14.0",
     "@octokit/core": "^7.0.2",
     "@upstash/redis": "^1.35.0",
     "clsx": "^2.1.1",

@@ -93,4 +93,22 @@
     @apply bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)]
            bg-clip-text text-transparent;
   }
+  .preview-link {
+  position: relative;
+  display: inline-block;
+}
+
+.preview-image {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 400px;
+  border: 1px solid #ccc;
+  z-index: 999;
+}
+
+.preview-link:hover .preview-image {
+  display: block;
+}
 }

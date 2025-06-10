@@ -33,13 +33,8 @@ const CodingNow: React.FC = () => {
       }
     };
 
-    // Initial fetch
     fetchData();
-
-    // Set up polling interval
-    const intervalId = setInterval(fetchData, 60000); // Fetch every 60 seconds
-
-    // Cleanup function
+    const intervalId = setInterval(fetchData, 60000); // Poll every 60s
     return () => clearInterval(intervalId);
   }, []);
 
@@ -65,7 +60,7 @@ const CodingNow: React.FC = () => {
           <span>Still trying to figure it out...</span>
         </p>
       </div>
-    )
+    );
   }
 
   return (
@@ -73,27 +68,42 @@ const CodingNow: React.FC = () => {
       <h2 className="gradient-text">Currently Working On</h2>
 
       {lastPush && (
-        <div >
+        <div>
           <div className="glass-card flex flex-col px-6 py-2 md:flex-row md:items-center md:justify-between gap-2">
             <div>
               <div className="flex items-center gap-2">
                 <span className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></span>
-                <p className="text-sm flex flex-col md:flex-row ">
-                  <span>Last commit to{' '}
-                    <a
-                      href={`https://github.com/${lastPush.repo}`}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="font-semibold text-[var(--primary)] hover:underline"
-                    >
-                      {lastPush.repo.split('/')[1]}&nbsp;
-                    </a>
+                <div className="text-sm flex flex-col md:flex-row items-center gap-1">
+                  <span>
+                    Last commit to{' '}
+                    <span className="relative group inline-block">
+                      <a
+                        href={`https://github.com/${lastPush.repo}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="font-semibold text-[var(--primary)] hover:underline"
+                      >
+                        {lastPush.repo.split('/')[1]}&nbsp;
+                      </a>
+                      <div className="absolute left-0 top-full z-50 hidden group-hover:block w-[300px] mt-2">
+                        <div className="bg-[var(--card-background)] rounded-lg shadow-xl border border-[var(--border)] overflow-hidden transition-all duration-300 ease-in-out">
+                          <iframe
+                            src="https://portfolio-v-two-nine.vercel.app"
+                            width="100%"
+                            height="200px"
+                            className="rounded-lg"
+                            loading="lazy"
+                          />
+                        </div>
+                      </div>
+                    </span>
                   </span>
                   {formatDistanceToNow(new Date(lastPush.time), { addSuffix: true })}
-                </p>
+                </div>
               </div>
-              <p className="text-xs text-[var(--muted)] mt-1"><strong>Commit message: </strong>
-                {lastPush.message}</p>
+              <p className="text-xs text-[var(--muted)] mt-1">
+                <strong>Commit message:</strong> {lastPush.message}
+              </p>
             </div>
             <a
               href={lastPush.url}
@@ -104,12 +114,13 @@ const CodingNow: React.FC = () => {
               View Commit →
             </a>
           </div>
-          <span className='text-xs text-[var(--muted)]'>Powered by github webhook and redis</span>
+          <span className="text-xs text-[var(--muted)]">Powered by GitHub Webhook and Redis</span>
         </div>
       )}
+
       <div className="flex flex-col gap-2">
-        <span>On going Project based on the latest commit</span>
-        <div className="flex items-center justify-between p-4 border-l-4 border-[var(--primary)]  hover:shadow-slate-400 shadow-lg bottom-2 right-2 transition-all duration-300">
+        <span>Ongoing project based on the latest commit</span>
+        <div className="flex items-center justify-between p-4 border-l-4 border-[var(--primary)] hover:shadow-slate-400 shadow-lg bottom-2 right-2 transition-all duration-300">
           <h3 className="font-semibold">
             {lastPush!.repo.split('/')[1]}
           </h3>
@@ -123,7 +134,8 @@ const CodingNow: React.FC = () => {
           </a>
         </div>
       </div>
-    </div>);
+    </div>
+  );
 };
 
 export default CodingNow;
