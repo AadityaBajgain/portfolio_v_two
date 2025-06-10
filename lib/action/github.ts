@@ -1,4 +1,3 @@
-
 // interface GitHubEvent {
 //   type: string;
 //   repo: {
@@ -138,6 +137,19 @@ export const fetchPinnedRepos = async () => {
 //   }
 // };
 
+interface GitHubRepo {
+  name: string;
+  description: string | null;
+  url: string;
+  homepageUrl: string | null;
+  updatedAt: string;
+  primaryLanguage: {
+    name: string;
+    color: string;
+  } | null;
+  visibility: 'PUBLIC' | 'PRIVATE';
+  isArchived: boolean;
+}
 
 const hostQuery = `{
   user(login: "${GITHUB_USERNAME}") {
@@ -177,9 +189,9 @@ export const fetchRepoWebsites = async () => {
       return null;
     }
 
-    // Filter only repos with homepageUrl
+    // Filter only repos with homepageUrl, now with proper typing
     const reposWithSites = json.data.user.repositories.nodes.filter(
-      (repo: any) => repo.homepageUrl && !repo.isArchived
+      (repo: GitHubRepo) => repo.homepageUrl && !repo.isArchived
     );
 
     return {
