@@ -52,7 +52,7 @@ const TodayThought = () => {
     )
   }
   return (
-    <div className="cloud-bubble animate-float absolute top-15 mb-4 md:top-30 left-[50%]">
+    <div className="cloud-bubble animate-float absolute top-10 mb-4 md:top-30 left-[50%]">
       <div className="relative z-10">
         <div className="flex items-center justify-between mb-4">
           <h3 className="text-lg font-semibold text-[var(--text-primary)]">
