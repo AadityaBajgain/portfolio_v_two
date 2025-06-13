@@ -145,7 +145,7 @@
   .cloud-text {
     @apply text-xs sm:text-xs md:text-base lg:text-lg
            text-[var(--text-primary)]
-           font-small
+           font-medium
            leading-relaxed;
   }
 
