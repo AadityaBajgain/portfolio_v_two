@@ -5,6 +5,7 @@ import CodingNow from '@/components/CurrentProjects';
 import HeroSection from '@/components/HeroSection';
 import Footer from '@/components/Footer';
 import Tools from '@/components/Tools';
+import TodayThought from '@/components/TodayThought';
 
 export default function Home() {
   return (
@@ -36,7 +37,7 @@ export default function Home() {
           <Tools />
         </div>
       </section>
-
+      <TodayThought/>
       <Footer />
     </main>
   );
