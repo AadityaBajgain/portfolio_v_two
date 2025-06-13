@@ -52,7 +52,7 @@ const TodayThought = () => {
     )
   }
   return (
-    <div className="cloud-bubble animate-float absolute top-10 mb-4 md:top-30 left-[50%]">
+    <div className="cloud-bubble animate-float absolute top-6 mb-4 md:top-30 left-[50%]">
       <div className="relative z-10">
         <div className="flex items-center justify-between mb-1">
           <h3 className="text-md font-semibold text-[var(--text-primary)]">
@@ -88,8 +88,7 @@ const TodayThought = () => {
           </div>
         )}
       </div>
-      <span className='text-xs text-[var(--muted)]'>This is powered by <a href="https://github.com/Prashant-koi/PersonalStatus" className='text-blue-400'>PersonalStatus
-</a> by PrasantKoi</span>
+      
     </div>
   );
 };
