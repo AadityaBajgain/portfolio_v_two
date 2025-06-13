@@ -54,8 +54,8 @@ const TodayThought = () => {
   return (
     <div className="cloud-bubble animate-float absolute top-10 mb-4 md:top-30 left-[50%]">
       <div className="relative z-10">
-        <div className="flex items-center justify-between mb-4">
-          <h3 className="text-lg font-semibold text-[var(--text-primary)]">
+        <div className="flex items-center justify-between mb-1">
+          <h3 className="text-md font-semibold text-[var(--text-primary)]">
             Current Thoughts
           </h3>
           <span 
@@ -68,21 +68,21 @@ const TodayThought = () => {
         </div>
 
         {status && (
-          <div className="space-y-3">
-            <p className="cloud-text">
+          <div className="space-y-1">
+            <p className="cloud-text text-[var(--primary)]">
               {status.thoughts === "App offline" 
                 ? "Currently offline" 
                 : status.thoughts
               }
             </p>
             {status.activeApps.length > 0 && (
-              <div className="cloud-subtext">
+              <div className="cloud-subtext text-green-400">
                 Active in: {status.activeApps.join(', ')}
               </div>
             )}
             {status.lastUpdated && (
               <p className="cloud-subtext">
-                Updated {formatDistanceToNow(new Date(status.lastUpdated), { addSuffix: true })}
+                Updated <span className='text-xs text-red-300'>{formatDistanceToNow(new Date(status.lastUpdated), { addSuffix: true })}</span>
               </p>
             )}
           </div>
