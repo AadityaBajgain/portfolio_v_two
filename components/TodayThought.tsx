@@ -88,6 +88,8 @@ const TodayThought = () => {
           </div>
         )}
       </div>
+      <span className='text-xs text-[var(--muted)]'>This is powered by <a href="https://github.com/Prashant-koi/PersonalStatus" className='text-blue-400'>PersonalStatus
+</a> by PrasantKoi</span>
     </div>
   );
 };
