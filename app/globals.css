@@ -10,11 +10,19 @@
   --accent: #f97316;
   --muted: #94a3b8;
   --border: #e2e8f0;
+  --text-primary: #1a1a1a;
+  --text-secondary: #2d3748;
+  --cloud-bg: rgba(255, 255, 255, 0.95);
 }
-:root.dark{
-  --background:#000000;
-  --foreground:#ffffff;
+
+:root.dark {
+  --background: #000000;
+  --foreground: #ffffff;
+  --text-primary: #f7fafc;
+  --text-secondary: #e2e8f0;
+  --cloud-bg: rgba(30, 41, 59, 0.95);
 }
+
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0f172a;
@@ -34,30 +42,23 @@
   }
 
   body {
-    @apply bg-[var(--background)] 
-           text-[var(--foreground)] 
-           max-w-7xl mx-auto px-4 
-           font-sans antialiased;
+    @apply bg-[var(--background)] text-[var(--foreground)] max-w-7xl mx-auto px-4 font-sans antialiased;
   }
 
   h1 {
-    @apply text-4xl md:text-5xl lg:text-6xl 
-           font-bold tracking-tight;
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight;
   }
 
   h2 {
-    @apply text-2xl md:text-3xl lg:text-4xl 
-           font-semibold;
+    @apply text-2xl md:text-3xl lg:text-4xl font-semibold;
   }
 
   h3 {
-    @apply text-xl md:text-2xl 
-           font-medium;
+    @apply text-xl md:text-2xl font-medium;
   }
 
   p {
-    @apply text-base md:text-lg 
-           leading-relaxed text-gray-600 dark:text-gray-300;
+    @apply text-base md:text-lg leading-relaxed text-gray-600 dark:text-gray-300;
   }
 }
 
@@ -73,45 +74,103 @@
   } */
 
   .glass-card {
-    @apply
-           backdrop-filter backdrop-blur-lg
-           border border-white/20
-           rounded-xl shadow-lg;
+    @apply backdrop-filter backdrop-blur-lg border border-white/20 rounded-xl shadow-lg;
   }
 
   .button {
-    @apply flex flex-row px-6 py-2
-           rounded-full
-           bg-[var(--primary)]
-           text-white font-medium
-           transition-all duration-300
-           hover:bg-[var(--secondary)]
-           hover:shadow-lg
-           active:scale-95
-           disabled:opacity-50
-           disabled:cursor-not-allowed;
+    @apply flex flex-row px-6 py-2 rounded-full bg-[var(--primary)] text-white font-medium transition-all duration-300 hover:bg-[var(--secondary)] hover:shadow-lg active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed;
   }
 
   .gradient-text {
-    @apply bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)]
-           bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-[var(--primary)] to-[var(--secondary)] bg-clip-text text-transparent;
   }
+
   .preview-link {
-  position: relative;
-  display: inline-block;
-}
+    position: relative;
+    display: inline-block;
+  }
 
-.preview-image {
-  display: none;
-  position: absolute;
-  top: 100%;
-  left: 0;
-  width: 400px;
-  border: 1px solid #ccc;
-  z-index: 999;
-}
+  .preview-image {
+    display: none;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 400px;
+    border: 1px solid #ccc;
+    z-index: 999;
+  }
 
-.preview-link:hover .preview-image {
-  display: block;
-}
+  .preview-link:hover .preview-image {
+    display: block;
+  }
+
+  .cloud-bubble {
+    @apply relative 
+           /* Smaller padding on mobile/tablet */
+           bg-white
+           rounded-full
+           p-3 sm:p-4  md:p-6 lg:p-8
+           backdrop-blur-lg
+           shadow-lg
+           transition-all duration-300
+           /* Reduced widths for smaller screens */
+           w-[200px] sm:w-[250px] md:w-[320px] lg:w-[500px]
+           mx-auto;
+  }
+
+  .cloud-bubble::before,
+  .cloud-bubble::after {
+    content: '';
+    position: absolute;
+    background: inherit;
+    border-radius: 50%;
+    z-index: -1;
+  }
+
+  /* Smaller cloud bubbles for mobile/tablet */
+  .cloud-bubble::before {
+    @apply w-[25px] sm:w-[35px] md:w-[45px] lg:w-[60px]
+           h-[25px] sm:h-[35px] md:h-[45px] lg:h-[60px]
+           -top-2 sm:-top-3 md:-top-4 lg:-top-6
+           left-4 sm:left-5 md:left-6 lg:left-10;
+  }
+
+  .cloud-bubble::after {
+    @apply w-[20px] sm:w-[30px] md:w-[40px] lg:w-[50px]
+           h-[20px] sm:h-[30px] md:h-[40px] lg:h-[50px]
+           -bottom-2 sm:-bottom-3 md:-bottom-4 lg:-bottom-5
+           right-4 sm:right-5 md:right-6 lg:right-10;
+  }
+
+  .cloud-text {
+    @apply text-xs sm:text-sm md:text-base lg:text-lg
+           text-[var(--text-primary)]
+           font-medium
+           leading-relaxed;
+  }
+
+  .cloud-subtext {
+    @apply text-[10px] sm:text-xs md:text-sm
+           text-[var(--text-secondary)]
+           leading-relaxed;
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translate(0, 0) scale(1);
+    }
+    50% {
+      /* Smaller float animation for mobile */
+      transform: translate(0, -4px) scale(1.01);
+    }
+  }
+
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+
+  /* Dark mode specific adjustments */
+  .dark .cloud-bubble {
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
 }

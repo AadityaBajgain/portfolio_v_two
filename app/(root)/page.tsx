@@ -10,7 +10,8 @@ import TodayThought from '@/components/TodayThought';
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <section className="section-container">
+      <section className="section-container flex flex-col">
+        <TodayThought/>
         <HeroSection />
       </section>
 
@@ -37,7 +38,6 @@ export default function Home() {
           <Tools />
         </div>
       </section>
-      <TodayThought/>
       <Footer />
     </main>
   );
