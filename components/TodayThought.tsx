@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect } from 'react'
 import { formatDistanceToNow } from 'date-fns'
+import { loadEnvFile } from 'process';
 
 interface StatusResponse {
   thoughts: string;
@@ -35,7 +36,21 @@ const TodayThought = () => {
 
     getStatus();
   }, []);
-
+  if(loading)
+  {
+    return(
+        <div>
+            {loading}
+        </div>
+    )
+  }
+  if(error){
+    return(
+    <div>
+        {error}
+    </div>
+    )
+  }
   return (
     <div className="cloud-bubble animate-float absolute top-0 left-[40%] md:top-30">
       <div className="relative z-10">
