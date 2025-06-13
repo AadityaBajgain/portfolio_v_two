@@ -56,7 +56,7 @@ const TodayThought = () => {
       <div className="relative z-10">
         <div className="flex items-center justify-between mb-1">
           <h3 className="text-md font-semibold text-[var(--text-primary)]">
-            Current Thoughts
+            Current Status
           </h3>
           <span 
             className={`inline-flex h-2 w-2 rounded-full ${
@@ -70,7 +70,7 @@ const TodayThought = () => {
         {status && (
           <div className="space-y-1">
             <p className="cloud-text text-[var(--primary)]">
-              {status.thoughts === "App offline" 
+              Thought: {status.thoughts === "App offline" 
                 ? "Currently offline" 
                 : status.thoughts
               }
