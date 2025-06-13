@@ -76,8 +76,8 @@ const TodayThought = () => {
               }
             </p>
             {status.activeApps.length > 0 && (
-              <div className="cloud-subtext text-green-400">
-                Active in: {status.activeApps.join(', ')}
+              <div className="cloud-subtext ">
+                Active in: <span className='text-green-400'>{status.activeApps.join(', ')}</span>
               </div>
             )}
             {status.lastUpdated && (
