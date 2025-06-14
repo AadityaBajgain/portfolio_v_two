@@ -151,19 +151,30 @@ const CodingNow: React.FC = () => {
       )}
 
       <div className="flex flex-col gap-2">
-        <span>Ongoing project based on the latest commit</span>
-        <div className="flex items-center justify-between p-4 border-l-4 border-[var(--primary)] hover:shadow-slate-400 shadow-lg bottom-2 right-2 transition-all duration-300">
-          <h3 className="font-semibold">
-            {lastPush!.repo.split('/')[1]}
-          </h3>
-          <a
-            href={`https://github.com/AadityaBajgain/${lastPush!.repo.split('/')[1]}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-[var(--primary)] hover:underline text-sm"
-          >
-            View →
-          </a>
+        <span>Live view of project based on the latest commit</span>
+        <div className="flex flex-col items-center justify-between p-4 border-l-4 border-[var(--primary)] hover:shadow-slate-400 shadow-lg bottom-2 right-2 transition-all duration-300">
+          <div className='w-full flex flex-row items-center justify-between my-5'>
+            <h3 className="font-semibold">
+              {lastPush!.repo.split('/')[1]}
+            </h3>
+            <a
+              href={`https://github.com/AadityaBajgain/${lastPush!.repo.split('/')[1]}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-[var(--primary)] hover:underline text-sm"
+            >
+              View →
+            </a>
+          </div>
+          <div className='border-3 border-amber-50 rounded-2xl'>
+            <iframe
+              src={currentRepo?.homepageUrl}
+              width="400"
+              height="200"
+              className="rounded-lg outline-none"
+              loading="lazy"
+            />
+          </div>
         </div>
       </div>
     </div>
