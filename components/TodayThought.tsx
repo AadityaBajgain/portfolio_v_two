@@ -61,27 +61,24 @@ const TodayThought = () => {
   }
 
   return (
-    <div className=" group">
+    <div className="group">
       <div className="cloud-bubble animate-float absolute top-6 mb-4 md:top-30 left-[50%]">
         <div className="relative z-10">
           <div className="flex items-center justify-between mb-1">
-            <h3 className="text-md font-semibold text-[var(--text-primary)]">
+            <h3 className="text-sm sm:text-md font-semibold text-[var(--text-primary)]">
               Current Status
             </h3>
-            <span 
-              className={`inline-flex h-2 w-2 rounded-full ${
-                status?.status === 'online' 
-                  ? 'bg-green-500/80 animate-pulse' 
-                  : 'bg-red-500/80'
-              }`}
-            />
+            <p className='text-xs text-black flex flex-row items-center gap-1'><span className={`inline-flex h-2 w-2 rounded-full text-xs text-black ${status?.busy === false
+              ? 'bg-green-500/80 animate-pulse'
+              : 'bg-red-500/80'
+              }`} />{`${status?.busy === false ? "Free" : "Busy"}`}</p>
           </div>
 
           {status && (
             <div className="space-y-1">
               <p className="cloud-text">Thought: <span className='text-[var(--primary)]'>
-                  {status.thoughts}
-                </span>
+                {status.thoughts}
+              </span>
               </p>
               {status.activeApps?.length > 0 && (
                 <div className="cloud-subtext">
@@ -98,21 +95,18 @@ const TodayThought = () => {
             </div>
           )}
         </div>
+
       </div>
-      
-      {/* Attribution tooltip */}
-      <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300
-                    absolute -bottom-8 left-1/2 -translate-x-1/2
-                    text-xs text-[var(--text-secondary)]">
-        <a 
+      <p className="relative opacity-0 top-30 left-[65%] group-hover:opacity-100 text-[var(--muted)] text-xs transition-colors duration-200">
+          Powered by <a
           href="https://github.com/Prashant-koi/PersonalStatus"
           target="_blank"
           rel="noopener noreferrer"
-          className="hover:text-[var(--primary)] transition-colors duration-200"
+          className='hover:underline text-[var(--primary)]'
         >
-          Powered by PortfolioStatus by PrasantKoi
-        </a>
-      </div>
+        PortfolioStatus </a>by PrasantKoi</p>
+
+
     </div>
   );
 };
