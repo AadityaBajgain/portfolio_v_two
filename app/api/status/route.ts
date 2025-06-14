@@ -72,11 +72,6 @@ export async function POST(request: NextRequest) {
 
 export async function GET() {
   try {
-    // GET is public - no API key required so visitors can see your status
-    const now = Date.now() / 1000; // Current time in seconds
-    // Consider status recent if updated in the last 10-15 seconds
-    // The desktop app sends updates every ~2 seconds.
-    // const isRecent = currentStatus.timestamp && (now - currentStatus.timestamp) < 15;
     const data = await redis.get('thought')
     // if (!isRecent || currentStatus.thoughts === "App offline") {
     //   return NextResponse.json({
