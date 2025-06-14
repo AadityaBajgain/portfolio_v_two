@@ -97,14 +97,15 @@ const TodayThought = () => {
         </div>
 
       </div>
-      <p className="relative opacity-0 top-30 left-[65%] group-hover:opacity-100 text-[var(--muted)] text-xs transition-colors duration-200">
+      <p className="relative opacity-0 top-5 left-[55%] sm:left-[55%] text-[8px] sm:text-xs md:top-25 lg:top-30 text-sm group-hover:opacity-100 text-white transition-colors duration-200"
+>
           Powered by <a
           href="https://github.com/Prashant-koi/PersonalStatus"
           target="_blank"
           rel="noopener noreferrer"
           className='hover:underline text-[var(--primary)]'
         >
-        PortfolioStatus </a>by PrasantKoi</p>
+        PortfolioStatus </a>— PrasantKoi</p>
 
 
     </div>
