@@ -61,7 +61,7 @@ const TodayThought = () => {
   }
 
   return (
-    <div className="group">
+    <div className="group max-w-fit">
       <div className="cloud-bubble animate-float absolute top-6 mb-4 md:top-30 left-[50%]">
         <div className="relative z-10">
           <div className="flex items-center justify-between mb-1">
