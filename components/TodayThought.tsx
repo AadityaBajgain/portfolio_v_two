@@ -22,7 +22,7 @@ const TodayThought = () => {
     const getStatus = async () => {
       try {
         const response = await fetch('/api/status');
-        console.log(response)
+        // console.log(response)
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const data = await response.json();
         setStatus(data);
@@ -61,9 +61,9 @@ const TodayThought = () => {
   }
 
   return (
-    <div className="group max-w-fit">
-      <div className="cloud-bubble animate-float absolute top-6 mb-4 md:top-30 left-[50%]">
-        <div className="relative z-10">
+
+      <div className="group max-w-fit absolute top-6 mb-4 md:top-30 left-[50%]">
+        <div className="relative z-10 cloud-bubble animate-float">
           <div className="flex items-center justify-between mb-1">
             <h3 className="text-sm sm:text-md font-semibold text-[var(--text-primary)]">
               Current Status
@@ -95,20 +95,17 @@ const TodayThought = () => {
             </div>
           )}
         </div>
-
-      </div>
-      <p className="relative opacity-0 top-10 left-[55%] sm:left-[53%] text-[10px] md:top-30 lg:top-30 text-sm group-hover:opacity-100 text-white transition-colors duration-200"
->
+<p className="relative opacity-0 text-[8px] sm:text-[10px] text-sm group-hover:opacity-100 text-white transition-colors duration-200">
           Powered by <a
           href="https://github.com/Prashant-koi/PersonalStatus"
           target="_blank"
           rel="noopener noreferrer"
           className='hover:underline text-[var(--primary)]'
         >
-        PersonalStatus </a>— PrasantKoi</p>
-
-
-    </div>
+        PersonalStatus </a>— PrasantKoi
+      </p>
+      </div>
+      
   );
 };
 
