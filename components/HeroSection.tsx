@@ -10,7 +10,7 @@ const HeroSection:React.FC = () => {
           alt="photo"
           width={200}
           height={200}
-          className="rounded-full opacity-90 object-cover w-[35vw] sm:w-1/3 md:w-1/4 lg:w-1/4 xl:w-1/4 shadow-lg"
+          className="rounded-full opacity-100 object-cover w-[35vw] sm:w-1/3 md:w-1/4 lg:w-1/4 xl:w-1/4 shadow-lg"
           priority
           loading="eager"
           draggable={false}
