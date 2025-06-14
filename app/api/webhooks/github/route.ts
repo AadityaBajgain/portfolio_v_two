@@ -18,9 +18,9 @@ export async function POST(req: Request) {
     const signature = req.headers.get('x-hub-signature-256') || '';
     const event = req.headers.get('x-github-event');
     
-    console.log('📦 Payload:', rawBody.slice(0, 200) + '...');
-    console.log('🔑 Event Type:', event);
-    console.log('🔐 Signature:', signature);
+    // console.log('📦 Payload:', rawBody.slice(0, 200) + '...');
+    // console.log('🔑 Event Type:', event);
+    // console.log('🔐 Signature:', signature);
     // Verify signature
     const hmac = crypto.createHmac('sha256', GITHUB_SECRET);
     const digest = 'sha256=' + hmac.update(rawBody).digest('hex');

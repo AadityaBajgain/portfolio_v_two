@@ -1,9 +1,12 @@
 // filepath: app/api/status/route.ts
 import { NextRequest, NextResponse } from 'next/server';
-
+import {Redis} from '@upstash/redis';
 // Your personal API key from environment variable
 const API_KEY = process.env.PERSONAL_STATUS_API_KEY;
-
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL!,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
+});
 let currentStatus = {
   thoughts: "App offline",
   activeApps: [] as string[], // Ensure type for empty array
@@ -35,7 +38,7 @@ export async function POST(request: NextRequest) {
     }
 
     const data = await request.json();
-
+    console.log(data);
     if (typeof data.thoughts === 'string' &&
         Array.isArray(data.activeApps) &&
         typeof data.busy === 'boolean' &&
@@ -47,7 +50,7 @@ export async function POST(request: NextRequest) {
       };
 
       console.log('Status updated:', currentStatus);
-
+      await redis.set('thought',JSON.stringify(data));
       return NextResponse.json({
         success: true,
         message: 'Status updated successfully'
@@ -73,23 +76,20 @@ export async function GET() {
     const now = Date.now() / 1000; // Current time in seconds
     // Consider status recent if updated in the last 10-15 seconds
     // The desktop app sends updates every ~2 seconds.
-    const isRecent = currentStatus.timestamp && (now - currentStatus.timestamp) < 15;
+    // const isRecent = currentStatus.timestamp && (now - currentStatus.timestamp) < 15;
+    const data = await redis.get('thought')
+    // if (!isRecent || currentStatus.thoughts === "App offline") {
+    //   return NextResponse.json({
+    //     thoughts: "App offline",
+    //     activeApps: [],
+    //     busy: false,
+    //     timestamp: 0,
+    //     lastUpdated: null,
+    //     status: 'offline'
+    //   });
+    // }
 
-    if (!isRecent || currentStatus.thoughts === "App offline") {
-      return NextResponse.json({
-        thoughts: "App offline",
-        activeApps: [],
-        busy: false,
-        timestamp: 0,
-        lastUpdated: null,
-        status: 'offline'
-      });
-    }
-
-    return NextResponse.json({
-      ...currentStatus,
-      status: 'online'
-    });
+    return NextResponse.json(data);
   } catch (error) {
     console.error('Error fetching status:', error);
     return NextResponse.json(
