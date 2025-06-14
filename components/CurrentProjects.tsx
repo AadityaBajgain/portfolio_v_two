@@ -101,7 +101,7 @@ const CodingNow: React.FC = () => {
 
       {lastPush && (
         <div>
-          <div className="glass-card flex flex-col px-6 py-2 md:flex-row md:items-center md:justify-between gap-2">
+          <div className="glass-card w-fit flex flex-col px-6 py-2 md:flex-row md:items-center md:justify-between gap-2">
             <div>
               <div className="flex items-center gap-2">
                 <span className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></span>
@@ -153,7 +153,7 @@ const CodingNow: React.FC = () => {
       <div className="flex flex-col gap-2">
         <span>Live view of project based on the latest commit</span>
         <div className="flex flex-col items-center justify-between p-4 border-l-4 border-[var(--primary)] hover:shadow-slate-400 shadow-lg bottom-2 right-2 transition-all duration-300">
-          <div className='w-full flex flex-row items-center justify-between my-5'>
+          <div className='flex flex-row items-center gap-7 my-5'>
             <h3 className="font-semibold">
               {lastPush!.repo.split('/')[1]}
             </h3>
@@ -169,9 +169,9 @@ const CodingNow: React.FC = () => {
           <div className='border-3 border-amber-50 rounded-2xl'>
             <iframe
               src={currentRepo?.homepageUrl}
-              width="400"
+              width="300"
               height="200"
-              className="rounded-lg outline-none"
+              className="rounded-lg "
               loading="lazy"
             />
           </div>
