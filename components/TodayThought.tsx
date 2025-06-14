@@ -105,7 +105,7 @@ const TodayThought = () => {
           rel="noopener noreferrer"
           className='hover:underline text-[var(--primary)]'
         >
-        PortfolioStatus </a>— PrasantKoi</p>
+        PersonalStatus </a>— PrasantKoi</p>
 
 
     </div>
