@@ -69,11 +69,14 @@ const TodayThought = () => {
 
         {status && (
           <div className="space-y-1">
-            <p className="cloud-text text-[var(--primary)]">
-              Thought: {status.thoughts === "App offline" 
+            <p className="cloud-text">
+              Thought: <span className='text-[var(--primary)]'>
+                {status.thoughts === "App offline" 
                 ? "Currently offline" 
                 : status.thoughts
               }
+              </span>
+              
             </p>
             {status.activeApps.length > 0 && (
               <div className="cloud-subtext ">
