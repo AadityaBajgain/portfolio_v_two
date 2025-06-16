@@ -1,6 +1,7 @@
 // filepath: app/api/status/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import {Redis} from '@upstash/redis';
+import { timeStamp } from 'console';
 // Your personal API key from environment variable
 const API_KEY = process.env.PERSONAL_STATUS_API_KEY;
 const redis = new Redis({
@@ -49,7 +50,10 @@ export async function POST(request: NextRequest) {
       };
 
       console.log('Status updated:', currentStatus);
-      await redis.set('thought',JSON.stringify(data.thoughts,data.timestamp));
+      await redis.set('thought',JSON.stringify({
+        thoughts:data.thoughts,
+        timestamp:data.timestamp
+      }));
       return NextResponse.json({
         success: true,
         message: 'Status updated successfully'
