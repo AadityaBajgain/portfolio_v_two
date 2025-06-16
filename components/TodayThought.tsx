@@ -38,14 +38,14 @@ const TodayThought = () => {
     const intervalId = setInterval(getStatus, 30000);
     return () => clearInterval(intervalId);
   }, []);
-  useEffect(()=>{
-    const getStatus = fetch("/api/status",{
-      method:"GET",
-      headers:{
-        "Context":"Application/JSON"
-      }
-    })
-  },[])
+  // useEffect(()=>{
+  //   const getStatus = fetch("/api/status",{
+  //     method:"GET",
+  //     headers:{
+  //       "Context":"Application/JSON"
+  //     }
+  //   })
+  // },[])
   if (loading) {
     return (
       <div className="cloud-bubble animate-float absolute top-6 mb-4 md:top-30 left-[50%]">
