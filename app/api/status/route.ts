@@ -38,7 +38,6 @@ export async function POST(request: NextRequest) {
     }
 
     const data = await request.json();
-    console.log(data);
     if (typeof data.thoughts === 'string' &&
         Array.isArray(data.activeApps) &&
         typeof data.busy === 'boolean' &&
@@ -50,7 +49,7 @@ export async function POST(request: NextRequest) {
       };
 
       console.log('Status updated:', currentStatus);
-      await redis.set('thought',JSON.stringify(data));
+      await redis.set('thought',JSON.stringify(data.thoughts,data.timestamp));
       return NextResponse.json({
         success: true,
         message: 'Status updated successfully'

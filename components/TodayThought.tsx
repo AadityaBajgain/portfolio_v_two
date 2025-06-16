@@ -2,8 +2,16 @@
 
 import React, { useState, useEffect } from 'react'
 import { formatDistanceToNow } from 'date-fns'
+import { Redis } from '@upstash/redis';
+const redis = new Redis({
+  url: process.env.UPSTASH_REDIS_REST_URL!,
+  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
+});
 
-
+interface redisResponse {
+  timestamp:number;
+  thoughts:string;
+}
 interface StatusResponse {
   thoughts: string;
   activeApps: string[];
@@ -17,7 +25,7 @@ const TodayThought = () => {
   const [status, setStatus] = useState<StatusResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
+  const [thought, setThought] = useState<redisResponse | null>(null);
   useEffect(() => {
     const getStatus = async () => {
       try {
@@ -38,14 +46,22 @@ const TodayThought = () => {
     const intervalId = setInterval(getStatus, 30000);
     return () => clearInterval(intervalId);
   }, []);
-  // useEffect(()=>{
-  //   const getStatus = fetch("/api/status",{
-  //     method:"GET",
-  //     headers:{
-  //       "Context":"Application/JSON"
-  //     }
-  //   })
-  // },[])
+  useEffect(()=>{
+    const getThough = async ()=>{
+      try{
+        const res = await redis.get('thought');
+        if (typeof res === 'string') {
+          const thought = JSON.parse(res);
+          setThought(thought);
+        }
+
+      }catch(error){
+        setError("Unable to fetch thoughts");
+      }
+    }
+   
+    getThough();
+  },[])
   if (loading) {
     return (
       <div className="cloud-bubble animate-float absolute top-6 mb-4 md:top-30 left-[50%]">
@@ -81,7 +97,7 @@ const TodayThought = () => {
           {status && (
             <div className="space-y-1">
               <p className="cloud-text">Thought: <span className='text-[var(--primary)]'>
-                {status.thoughts}
+                {thought?.thoughts}
               </span>
               </p>
               {status.activeApps?.length > 0 && (
