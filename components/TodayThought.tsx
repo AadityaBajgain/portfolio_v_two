@@ -22,7 +22,6 @@ const TodayThought = () => {
     const getStatus = async () => {
       try {
         const response = await fetch('/api/status');
-        // console.log(response)
         if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
         const data = await response.json();
         setStatus(data);
@@ -36,11 +35,17 @@ const TodayThought = () => {
     };
 
     getStatus();
-    // Poll every 30 seconds
     const intervalId = setInterval(getStatus, 30000);
     return () => clearInterval(intervalId);
   }, []);
-
+  useEffect(()=>{
+    const getStatus = fetch("/api/status",{
+      method:"GET",
+      headers:{
+        "Context":"Application/JSON"
+      }
+    })
+  },[])
   if (loading) {
     return (
       <div className="cloud-bubble animate-float absolute top-6 mb-4 md:top-30 left-[50%]">
@@ -61,7 +66,6 @@ const TodayThought = () => {
   }
 
   return (
-
       <div className="group max-w-fit absolute top-6 mb-4 md:top-30 left-[50%]">
         <div className="relative z-10 cloud-bubble animate-float">
           <div className="flex items-center justify-between mb-1">

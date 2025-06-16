@@ -72,19 +72,23 @@ export async function POST(request: NextRequest) {
 
 export async function GET() {
   try {
-    const data = await redis.get('thought')
-    // if (!isRecent || currentStatus.thoughts === "App offline") {
-    //   return NextResponse.json({
-    //     thoughts: "App offline",
-    //     activeApps: [],
-    //     busy: false,
-    //     timestamp: 0,
-    //     lastUpdated: null,
-    //     status: 'offline'
-    //   });
-    // }
+    const now = Date.now() / 1000;
+    const isRecent = currentStatus.timestamp && (now - currentStatus.timestamp) < 15;
 
-    return NextResponse.json(data);
+    if (!isRecent || currentStatus.thoughts === "App offline") {
+      return NextResponse.json({
+        thoughts: "App offline",
+        activeApps: [],
+        busy: false,
+        timestamp: 0,
+        lastUpdated: null,
+        status: 'offline'
+      });
+    }
+    return NextResponse.json({
+      ...currentStatus,
+      status: 'online'
+    });
   } catch (error) {
     console.error('Error fetching status:', error);
     return NextResponse.json(

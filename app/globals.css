@@ -108,7 +108,7 @@
     @apply relative 
            /* Smaller padding on mobile/tablet */
            bg-white
-           rounded-[20px]
+           rounded-[2rem]
            p-3 sm:p-4  md:p-6 lg:p-8
            backdrop-blur-lg
            shadow-lg
