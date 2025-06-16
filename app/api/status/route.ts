@@ -1,7 +1,6 @@
 // filepath: app/api/status/route.ts
 import { NextRequest, NextResponse } from 'next/server';
 import {Redis} from '@upstash/redis';
-import { timeStamp } from 'console';
 // Your personal API key from environment variable
 const API_KEY = process.env.PERSONAL_STATUS_API_KEY;
 const redis = new Redis({
