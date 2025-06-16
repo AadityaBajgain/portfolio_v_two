@@ -56,7 +56,7 @@ const TodayThought = () => {
         }
 
       }catch(error){
-        setError("Unable to fetch thoughts");
+        setError(`Unable to fetch thoughts: ${error}`);
       }
     }
    
