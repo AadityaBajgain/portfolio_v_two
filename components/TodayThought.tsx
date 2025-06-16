@@ -9,7 +9,6 @@ const redis = new Redis({
 });
 
 interface redisResponse {
-  timestamp:number;
   thoughts:string;
 }
 interface StatusResponse {
