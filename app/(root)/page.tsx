@@ -6,6 +6,7 @@ import HeroSection from '@/components/HeroSection';
 import Footer from '@/components/Footer';
 import Tools from '@/components/Tools';
 import TodayThought from '@/components/TodayThought';
+import Contact from '@/components/Contact';
 
 export default function Home() {
   return (
@@ -38,7 +39,13 @@ export default function Home() {
           <Tools />
         </div>
       </section>
-      <Footer />
+      <section className="section-container">
+      <h1 className='mb-5'>Get In Touch</h1>
+      <div className="flex flex-col">
+          <Contact />
+          <Footer />
+        </div>
+      </section>
     </main>
   );
 }
