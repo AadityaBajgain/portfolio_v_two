@@ -14,6 +14,7 @@ interface StatusResponse {
 }
 interface redisResponse {
   thoughts:string;
+  timestamp:number
 }
 
 const TodayThought = () => {
@@ -45,7 +46,7 @@ const TodayThought = () => {
     const intervalId = setInterval(fetchData, 30000);
     return () => clearInterval(intervalId);
   }, []);
-  // console.log(status);
+  console.log(thought?.timestamp);
   if (loading) {
     return (
       <div className="cloud-bubble animate-float absolute top-6 mb-4 md:top-30 left-[50%]">
@@ -64,6 +65,7 @@ const TodayThought = () => {
       </div>
     );
   }
+  console.log(new Date());
   console.log(thought);
   return (
       <div className="group max-w-fit absolute top-6 mb-4 md:top-30 left-[50%]">
@@ -89,10 +91,10 @@ const TodayThought = () => {
                   Active in: <span className='text-green-400'>{status.activeApps.join(', ')}</span>
                 </div>
               )}
-              {status.lastUpdated && (
+              {thought?.timestamp && (
                 <p className="cloud-subtext">
                   Updated <span className='text-xs text-red-300'>
-                    {formatDistanceToNow(new Date(status.lastUpdated), { addSuffix: true })}
+                    {formatDistanceToNow(new Date(thought?.timestamp), { addSuffix: true })}
                   </span>
                 </p>
               )}

@@ -51,7 +51,7 @@ export async function POST(request: NextRequest) {
       console.log('Status updated:', currentStatus);
       await redis.set('thought',JSON.stringify({
         thoughts:data.thoughts,
-        timestamp:data.timestamp
+        timestamp:new Date(),
       }));
       return NextResponse.json({
         success: true,
