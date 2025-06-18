@@ -123,7 +123,7 @@ const CodingNow: React.FC = () => {
                             src={currentRepo?.homepageUrl}
                             width="300"
                             height="200"
-                            className="rounded-lg"
+                            className="rounded-lg "
                             loading="lazy"
                           />
                         </div>
@@ -168,7 +168,7 @@ const CodingNow: React.FC = () => {
               src={currentRepo?.homepageUrl}
               // width="525"
               // height="300"
-              className="rounded-lg w-full h-[35vh]"
+              className="rounded-lg w-full h-[35vh] border-2 border-white"
               loading="lazy"
             />
     </div>
