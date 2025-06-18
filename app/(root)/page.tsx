@@ -43,9 +43,9 @@ export default function Home() {
       <h1 className='mb-5'>Get In Touch</h1>
       <div className="flex flex-col">
           <Contact />
-          <Footer />
         </div>
       </section>
+      <Footer />
     </main>
   );
 }

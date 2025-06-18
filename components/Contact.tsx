@@ -3,10 +3,10 @@ import Image from 'next/image';
 import Link from 'next/link';
 const Contact = () => {
   return (
-    <div className='p-6 grid grid-rows-2 gap-5 md:p-8 md:grid-cols-2'>
+    <div className='h-max-fit p-6 grid gap-5 md:p-8 md:grid-cols-2'>
     <div>
         <h2 className='text-[var(--primary)] mb-5'> Contact Information</h2>
-        <p className='text-md'>Let&apos;s connect! I'm always open to discussing new project ideas and potential collaborations. Feel free to reach out through any of the channels below.</p>
+        <p className='text-md'>Let&apos;s connect! I&apos;m always open to discussing new project ideas and potential collaborations. Feel free to reach out through any of the channels below.</p>
         <ul className="mt-3 space-y-2 md:space-x-3">
           <li className='flex flex-row items-center'>
             <Image src="https://skillicons.dev/icons?i=gmail,&theme=dark" alt="gmail" width={20} height={20} className='w-[2.5rem]' unoptimized/>
