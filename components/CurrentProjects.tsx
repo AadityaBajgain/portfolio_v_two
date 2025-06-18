@@ -166,9 +166,12 @@ const CodingNow: React.FC = () => {
 
             <iframe
               src={currentRepo?.homepageUrl}
-              // width="525"
-              // height="300"
-              className="rounded-lg w-full h-[35vh] border-2 border-slate-300"
+              title='live project window'
+              allowFullScreen
+              width="100%"
+              height="300"
+              referrerPolicy='no-referrer'
+              className="rounded-lg border-2 border-slate-300"
               loading="lazy"
             />
     </div>
