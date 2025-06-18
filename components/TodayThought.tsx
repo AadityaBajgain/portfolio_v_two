@@ -2,15 +2,8 @@
 
 import React, { useState, useEffect } from 'react'
 import { formatDistanceToNow } from 'date-fns'
-import { Redis } from '@upstash/redis';
-const redis = new Redis({
-  url: process.env.UPSTASH_REDIS_REST_URL!,
-  token: process.env.UPSTASH_REDIS_REST_TOKEN!,
-});
 
-interface redisResponse {
-  thoughts:string;
-}
+
 interface StatusResponse {
   thoughts: string;
   activeApps: string[];
@@ -19,48 +12,40 @@ interface StatusResponse {
   lastUpdated: string | null;
   status: 'online' | 'offline';
 }
+interface redisResponse {
+  thoughts:string;
+}
 
 const TodayThought = () => {
   const [status, setStatus] = useState<StatusResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [thought, setThought] = useState<redisResponse | null>(null);
+  const [thought,setThought] = useState<redisResponse | null>(null);
   useEffect(() => {
-    const getStatus = async () => {
-      try {
-        const response = await fetch('/api/status');
-        if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-        const data = await response.json();
-        setStatus(data);
-        setError(null);
-      } catch (error) {
-        console.error('Failed to fetch status:', error);
-        setError('Unable to fetch current thoughts');
-      } finally {
-        setLoading(false);
-      }
+    const fetchData = async () => {
+        try {
+          const statusData = await fetch('/api/status');
+          const thoughtData = await fetch('api/thought');
+          if (!statusData.ok) throw new Error(`HTTP error! status: ${statusData.status}`);
+          if (!thoughtData.ok) throw new Error(`HTTP error! status: ${thoughtData.status}`);
+          const sdata = await statusData.json();
+          const tdata = await thoughtData.json();
+          setStatus(sdata);
+          setThought(tdata)
+          setError(null);
+        } catch (error) {
+          console.error('Failed to fetch status:', error);
+          setError('Unable to fetch current thoughts');
+        } finally {
+          setLoading(false);
+        }
     };
 
-    getStatus();
-    const intervalId = setInterval(getStatus, 30000);
+    fetchData();
+    const intervalId = setInterval(fetchData, 30000);
     return () => clearInterval(intervalId);
   }, []);
-  useEffect(()=>{
-    const getThough = async ()=>{
-      try{
-        const res = await redis.get('thought');
-        if (typeof res === 'string') {
-          const thought = JSON.parse(res);
-          setThought(thought);
-        }
-
-      }catch(error){
-        setError(`Unable to fetch thoughts: ${error}`);
-      }
-    }
-   
-    getThough();
-  },[])
+  // console.log(status);
   if (loading) {
     return (
       <div className="cloud-bubble animate-float absolute top-6 mb-4 md:top-30 left-[50%]">
@@ -79,7 +64,7 @@ const TodayThought = () => {
       </div>
     );
   }
-
+  console.log(thought);
   return (
       <div className="group max-w-fit absolute top-6 mb-4 md:top-30 left-[50%]">
         <div className="relative z-10 cloud-bubble animate-float">
