@@ -168,7 +168,7 @@ const CodingNow: React.FC = () => {
               src={currentRepo?.homepageUrl}
               // width="525"
               // height="300"
-              className="rounded-lg w-full h-[35vh] border-2 border-white"
+              className="rounded-lg w-full h-[35vh] border-2 border-slate-300"
               loading="lazy"
             />
     </div>
