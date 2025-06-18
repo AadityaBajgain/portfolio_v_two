@@ -161,7 +161,7 @@
     @apply text-[var(--primary)] mt-5 mb-2 font-bold text-xl w-full;
   }
   .form input, .form textarea {
-    @apply border-2 border-white rounded-lg px-3 py-2 w-full ; 
+    @apply border-2 border-slate-300 rounded-lg px-3 py-2 w-full ; 
   }
   @keyframes float {
     0%, 100% {
