@@ -65,8 +65,6 @@ const TodayThought = () => {
       </div>
     );
   }
-  console.log(new Date());
-  console.log(thought);
   return (
       <div className="group max-w-fit absolute top-6 mb-4 md:top-30 left-[50%]">
         <div className="relative z-10 cloud-bubble animate-float">

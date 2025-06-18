@@ -151,18 +151,7 @@ const CodingNow: React.FC = () => {
       )}
 
       
-        <p>Live view of project based on the latest commit</p>
-            {/* <h3 className="font-semibold">
-              {lastPush!.repo.split('/')[1]}
-            </h3> */}
-            {/* <a
-              href={`https://github.com/AadityaBajgain/${lastPush!.repo.split('/')[1]}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[var(--primary)] hover:underline text-sm"
-            >
-              View →
-            </a> */}
+        <p className='font-semibold text-sm'>Live view of project based on the latest commit</p>
 
             <iframe
               src={currentRepo?.homepageUrl}
