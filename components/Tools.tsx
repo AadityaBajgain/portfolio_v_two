@@ -14,7 +14,7 @@ const Tools = () => {
         <div className="mt-5 flex flex-col gap-5">
           <div>
             <Image
-              src="https://skillicons.dev/icons?i=js,ts,py,cpp,c"
+              src="https://skillicons.dev/icons?i=java,py,js,ts,cpp,c"
               alt="Programming Languages: Java, Python, JavaScript, TypeScript, C++, C"
               width={100}
               height={100}
