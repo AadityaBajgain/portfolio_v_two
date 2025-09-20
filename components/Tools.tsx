@@ -15,7 +15,7 @@ const Tools = () => {
           <div>
             <Image
               src="https://skillicons.dev/icons?i=js,ts,py,cpp,c"
-              alt="Programming Languages: JavaScript, TypeScript, Python, C++, C"
+              alt="Programming Languages: JavaScript, TypeScript, Python, C++, C, Java"
               width={100}
               height={100}
               unoptimized
