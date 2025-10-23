@@ -45,7 +45,7 @@ export default function Home() {
           <Contact />
         </div>
       </section>
-      <Footer />
+     
     </main>
   );
 }
