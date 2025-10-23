@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 const HeroSection:React.FC = () => {
   return (
-    <section className="section-container mx-auto gap-10 flex flex-col items-center md:gap-0 ">
+    <section className="section-container mx-auto gap-10 flex flex-col items-center md:gap-0 lg:mt-10">
       <div className='flex flex-col md:flex-row justify-around items-center gap-10'>
         <Image
           src="/pic.webp"
