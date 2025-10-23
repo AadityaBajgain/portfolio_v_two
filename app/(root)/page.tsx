@@ -3,7 +3,6 @@ import Experience from '@/components/Experience';
 import Projects from '@/components/Projects';
 import CodingNow from '@/components/CurrentProjects';
 import HeroSection from '@/components/HeroSection';
-import Footer from '@/components/Footer';
 import Tools from '@/components/Tools';
 import TodayThought from '@/components/TodayThought';
 import Contact from '@/components/Contact';
