@@ -11,7 +11,7 @@ import Contact from '@/components/Contact';
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <section className="section-container flex flex-col">
+      <section className="section-container h-screen flex flex-col">
         <TodayThought/>
         <HeroSection />
       </section>
