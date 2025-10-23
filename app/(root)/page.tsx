@@ -17,7 +17,7 @@ export default function Home() {
       </section>
 
       {/* Experience & Education */}
-      <section className="section-container">
+      <section className="section-container min-h-screen">
         <h1 className='mb-5'>About Me</h1>
         <div className="grid md:grid-cols-2 gap-8">
           <Education />
@@ -25,7 +25,7 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section-container">
+      <section className="section-container min-h-sccreen">
         <h1 className='mb-5'>My Projects</h1>
         <div className="grid md:grid-cols-2 gap-8">
           <Projects />
@@ -33,13 +33,13 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="section-container">
+      <section className="section-container min-h-screen">
         <h1 className='mb-5'>My Tools</h1>
         <div>
           <Tools />
         </div>
       </section>
-      <section className="section-container">
+      <section className="section-container min-h-screen">
       <h1 className='mb-5'>Get In Touch</h1>
       <div className="flex flex-col">
           <Contact />
