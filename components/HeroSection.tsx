@@ -1,6 +1,7 @@
-import React from 'react'
-import Image from 'next/image'
-import Link from 'next/link'
+import React from 'react';
+import Image from 'next/image';
+import Link from 'next/link';
+import DownArrowAnimation from '@/components/DownArrowAnimation';
 const HeroSection:React.FC = () => {
   return (
     <section className="section-container mx-auto gap-10 flex flex-col items-center md:gap-0 lg:justify-center">
@@ -33,6 +34,7 @@ const HeroSection:React.FC = () => {
             </div>
           </div>
       </div>
+      <DownArrowAnimation/>
     </section>
   )
 }
