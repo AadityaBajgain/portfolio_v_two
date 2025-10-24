@@ -7,12 +7,12 @@ const DownArrowAnimation: React.FC = () => {
     <motion.div
       initial={{ y: 0 }}
       animate={{ y: 10 }}
-      transition={{ duration: 0.5, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
+      transition={{ duration: 0.8, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
       style={{
         width: 0,
         borderLeft: '10px solid transparent',
         borderRight: '10px solid transparent',
-        borderTop: '15px solid #333',
+        borderTop: '15px solid #0f766e',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
