@@ -34,7 +34,7 @@ const HeroSection:React.FC = () => {
             </div>
           </div>
       </div>
-      <DownArrowAnimation/>
+      <DownArrowAnimation className="md:mt-5 lg:mt-8"/>
     </section>
   )
 }
