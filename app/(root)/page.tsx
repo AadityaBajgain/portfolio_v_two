@@ -6,14 +6,12 @@ import HeroSection from '@/components/HeroSection';
 import Tools from '@/components/Tools';
 import TodayThought from '@/components/TodayThought';
 import Contact from '@/components/Contact';
-import DownArrowAnimation from '@/components/DownArrowAnimation';
 export default function Home() {
   return (
     <main className="min-h-screen">
       <section className="section-container min-h-screen flex flex-col lg:justify-center">
         <TodayThought/>
         <HeroSection />
-        <DownArrowAnimation/>
       </section>
 
       {/* Experience & Education */}
