@@ -12,7 +12,7 @@ const DownArrowAnimation: React.FC = () => {
         width: 0,
         borderLeft: '10px solid transparent',
         borderRight: '10px solid transparent',
-        borderTop: '15px solid #0f766e',
+        borderTop: '15px solid var(--primary)',
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
