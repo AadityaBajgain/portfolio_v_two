@@ -10,7 +10,7 @@ import Contact from '@/components/Contact';
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <section className="section-container min-h-screen flex flex-col">
+      <section className="section-container min-h-screen flex flex-col lg:justify-center">
         <TodayThought/>
         <HeroSection />
       </section>
