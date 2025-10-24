@@ -9,7 +9,6 @@ const DownArrowAnimation: React.FC = () => {
       transition={{ duration: 0.5, repeat: Infinity, repeatType: 'reverse', ease: 'easeInOut' }}
       style={{
         width: 0,
-        height: 0,
         borderLeft: '10px solid transparent',
         borderRight: '10px solid transparent',
         borderTop: '15px solid #333',
