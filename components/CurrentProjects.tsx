@@ -117,17 +117,6 @@ const CodingNow: React.FC = () => {
                       >
                         {lastPush.repo.split('/')[1]}&nbsp;
                       </a>
-                      <div className="absolute left-0 top-full z-50 hidden group-hover:block w-[300px] mt-2">
-                        <div className="rounded-lg shadow-xl border border-white  overflow-hidden transition-all duration-300 ease-in-out">
-                          <iframe
-                            src={currentRepo?.homepageUrl}
-                            width="300"
-                            height="200"
-                            className="rounded-lg "
-                            loading="lazy"
-                          />
-                        </div>
-                      </div>
                     </span>
                   </span>
                   {formatDistanceToNow(new Date(lastPush.time), { addSuffix: true })}
@@ -160,7 +149,7 @@ const CodingNow: React.FC = () => {
               width="100%"
               height="300"
               referrerPolicy='no-referrer'
-              className="rounded-lg border-2 border-slate-300"
+              className="bg-none rounded-lg border-2 border-slate-300"
               loading="lazy"
             />
     </div>
