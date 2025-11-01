@@ -118,7 +118,7 @@ const CodingNow: React.FC = () => {
                         {lastPush.repo.split('/')[1]}&nbsp;
                       </a>
                       <div className="absolute left-0 top-full z-50 hidden group-hover:block w-[300px] mt-2">
-                        <div className="bg-[var(--card-background)] rounded-lg shadow-xl border border-white  overflow-hidden transition-all duration-300 ease-in-out">
+                        <div className="rounded-lg shadow-xl border border-white  overflow-hidden transition-all duration-300 ease-in-out">
                           <iframe
                             src={currentRepo?.homepageUrl}
                             width="300"
