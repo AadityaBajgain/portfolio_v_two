@@ -38,7 +38,7 @@ const Contact = () => {
       <input type="email" placeholder='Enter your email'/>
       <label htmlFor="Message">Message</label>
       <textarea placeholder='Enter your message'></textarea>
-      <button className='button mt-5 cursor-pointer'>Submit</button>
+      <button className='button mt-4 cursor-pointer'>Submit</button>
     </form>
     </div>
     
