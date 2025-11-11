@@ -1,7 +1,118 @@
-import React from 'react';
+'use client';
+
+import React, { useState, ChangeEvent, FormEvent } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import emailjs from '@emailjs/browser';
+
+type FormFields = {
+  name: string;
+  email: string;
+  message: string;
+};
+
+const initialState: FormFields = {
+  name: '',
+  email: '',
+  message: '',
+};
+
+const emailjsConfig = {
+  serviceId: process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID ?? '',
+  templateId: process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID ?? '',
+  publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY ?? '',
+};
+
 const Contact = () => {
+  const [formData, setFormData] = useState<FormFields>(initialState);
+  const [status, setStatus] = useState<{ type: 'idle' | 'success' | 'error'; message: string }>({
+    type: 'idle',
+    message: '',
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleChange =
+    (field: keyof FormFields) =>
+    (event: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      setFormData((prev) => ({ ...prev, [field]: event.target.value }));
+      if (status.type !== 'idle') {
+        setStatus({ type: 'idle', message: '' });
+      }
+    };
+
+  const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    if (isSubmitting) return;
+
+    const payload = {
+      name: formData.name.trim(),
+      email: formData.email.trim(),
+      message: formData.message.trim(),
+    };
+
+    if (payload.name.length < 2) {
+      setStatus({ type: 'error', message: 'Please let me know who you are.' });
+      return;
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(payload.email)) {
+      setStatus({ type: 'error', message: 'Please enter a valid email address.' });
+      return;
+    }
+
+    if (payload.message.length < 10) {
+      setStatus({ type: 'error', message: 'A bit more detail would be helpful.' });
+      return;
+    }
+
+    if (!emailjsConfig.serviceId || !emailjsConfig.templateId || !emailjsConfig.publicKey) {
+      setStatus({
+        type: 'error',
+        message: 'Email service is not configured yet. Please try again later.',
+      });
+      return;
+    }
+
+    try {
+      setIsSubmitting(true);
+      await emailjs.send(
+        emailjsConfig.serviceId,
+        emailjsConfig.templateId,
+        {
+          from_name: payload.name,
+          reply_to: payload.email,
+          message: payload.message,
+          submitted_at: new Date().toISOString(),
+        },
+        emailjsConfig.publicKey
+      );
+
+      try {
+        const response = await fetch('/api/contact', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+
+        if (!response.ok) {
+          const data = await response.json().catch(() => ({}));
+          console.warn('Failed to store contact entry:', data);
+        }
+      } catch (storeError) {
+        console.warn('Failed to store contact entry:', storeError);
+      }
+
+      setFormData(initialState);
+      setStatus({ type: 'success', message: 'Thanks for reaching out! I will get back to you soon.' });
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Something went wrong. Please try again.';
+      setStatus({ type: 'error', message });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
   return (
     <div className='h-max-fit p-6 grid gap-5 md:p-8 md:grid-cols-2'>
     <div>
@@ -25,20 +136,58 @@ const Contact = () => {
           <li className='flex flex-row items-center'>
             <Image src="https://skillicons.dev/icons?i=github,&theme=dark" alt="github" width={20} height={20} className='w-[2.5rem]' unoptimized/>
             <span className="font-semibold text-sm">GitHub:{" "}
-            <Link href="https://github.com/AadityaBajgain" target="_blank" rel="noopener noreferrer" className="text-[var(--primary)] text-smhover:underline">
+            <Link href="https://github.com/AadityaBajgain" target="_blank" rel="noopener noreferrer" className="text-[var(--primary)] text-sm hover:underline">
               github.com/AadityaBajgain
             </Link></span>
           </li>
         </ul>
     </div>
-    <form className='form'>
-      <label htmlFor="Name">Name</label>
-      <input type="text" placeholder='Enter your name'/>
-      <label htmlFor="email">Email</label>
-      <input type="email" placeholder='Enter your email'/>
-      <label htmlFor="Message">Message</label>
-      <textarea placeholder='Enter your message'></textarea>
-      <button className='button mt-4 cursor-pointer'>Submit</button>
+    <form className='form' onSubmit={handleSubmit} noValidate>
+      <label htmlFor="contact-name">Name</label>
+      <input
+        id="contact-name"
+        name="name"
+        type="text"
+        placeholder='Enter your name'
+        value={formData.name}
+        onChange={handleChange('name')}
+        minLength={2}
+        maxLength={100}
+        required
+      />
+      <label htmlFor="contact-email">Email</label>
+      <input
+        id="contact-email"
+        name="email"
+        type="email"
+        placeholder='Enter your email'
+        value={formData.email}
+        onChange={handleChange('email')}
+        required
+      />
+      <label htmlFor="contact-message">Message</label>
+      <textarea
+        id="contact-message"
+        name="message"
+        placeholder='Enter your message'
+        value={formData.message}
+        onChange={handleChange('message')}
+        rows={5}
+        minLength={10}
+        maxLength={1000}
+        required
+      ></textarea>
+      <button className='button mt-4 cursor-pointer' type="submit" disabled={isSubmitting}>
+        {isSubmitting ? 'Sending...' : 'Submit'}
+      </button>
+      <p
+        className={`text-sm mt-3 text-center ${
+          status.type === 'error' ? 'text-red-500' : 'text-[var(--primary)]'
+        }`}
+        aria-live="polite"
+      >
+        {status.type !== 'idle' ? status.message : ''}
+      </p>
     </form>
     </div>
     
