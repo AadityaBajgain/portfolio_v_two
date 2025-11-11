@@ -36,7 +36,6 @@ export async function POST(request: NextRequest) {
         { status: 401 }
       );
     }
-
     const data = await request.json();
     if (typeof data.thoughts === 'string' &&
         Array.isArray(data.activeApps) &&
