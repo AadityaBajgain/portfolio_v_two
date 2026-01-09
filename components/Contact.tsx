@@ -23,6 +23,15 @@ const emailjsConfig = {
   publicKey: process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY ?? '',
 };
 
+const getErrorMessage = (error: unknown) => {
+  if (error instanceof Error) return error.message;
+  if (typeof error === 'string') return error;
+  if (error && typeof error === 'object' && 'text' in error) {
+    return String((error as { text?: string }).text || 'Something went wrong. Please try again.');
+  }
+  return 'Something went wrong. Please try again.';
+};
+
 const Contact = () => {
   const [formData, setFormData] = useState<FormFields>(initialState);
   const [status, setStatus] = useState<{ type: 'idle' | 'success' | 'error'; message: string }>({
@@ -66,48 +75,66 @@ const Contact = () => {
       return;
     }
 
-    if (!emailjsConfig.serviceId || !emailjsConfig.templateId || !emailjsConfig.publicKey) {
-      setStatus({
-        type: 'error',
-        message: 'Email service is not configured yet. Please try again later.',
-      });
-      return;
-    }
-
     try {
       setIsSubmitting(true);
-      await emailjs.send(
-        emailjsConfig.serviceId,
-        emailjsConfig.templateId,
-        {
-          from_name: payload.name,
-          reply_to: payload.email,
-          message: payload.message,
-          submitted_at: new Date().toISOString(),
-        },
-        emailjsConfig.publicKey
-      );
+      const canSendEmail =
+        !!emailjsConfig.serviceId && !!emailjsConfig.templateId && !!emailjsConfig.publicKey;
 
-      try {
-        const response = await fetch('/api/contact', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload),
+      let emailOk = false;
+      let storeOk = false;
+      let emailError: string | null = null;
+      let storeError: string | null = null;
+
+      const storePromise = fetch('/api/contact', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      })
+        .then(async (response) => {
+          if (!response.ok) {
+            const data = await response.json().catch(() => ({}));
+            throw new Error(data?.error || 'Unable to store your message right now.');
+          }
+          storeOk = true;
+        })
+        .catch((error) => {
+          storeError = getErrorMessage(error);
         });
 
-        if (!response.ok) {
-          const data = await response.json().catch(() => ({}));
-          console.warn('Failed to store contact entry:', data);
-        }
-      } catch (storeError) {
-        console.warn('Failed to store contact entry:', storeError);
-      }
+      const emailPromise = canSendEmail
+        ? emailjs
+            .send(
+              emailjsConfig.serviceId,
+              emailjsConfig.templateId,
+              {
+                from_name: payload.name,
+                reply_to: payload.email,
+                message: payload.message,
+                submitted_at: new Date().toISOString(),
+              },
+              emailjsConfig.publicKey
+            )
+            .then(() => {
+              emailOk = true;
+            })
+            .catch((error) => {
+              emailError = getErrorMessage(error);
+            })
+        : Promise.resolve();
 
-      setFormData(initialState);
-      setStatus({ type: 'success', message: 'Thanks for reaching out! I will get back to you soon.' });
+      await Promise.all([storePromise, emailPromise]);
+
+      if (storeOk || emailOk) {
+        setFormData(initialState);
+        setStatus({ type: 'success', message: 'Thanks for reaching out! I will get back to you soon.' });
+      } else {
+        setStatus({
+          type: 'error',
+          message: storeError || emailError || 'Something went wrong. Please try again.',
+        });
+      }
     } catch (error) {
-      const message = error instanceof Error ? error.message : 'Something went wrong. Please try again.';
-      setStatus({ type: 'error', message });
+      setStatus({ type: 'error', message: getErrorMessage(error) });
     } finally {
       setIsSubmitting(false);
     }
