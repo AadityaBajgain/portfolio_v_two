@@ -94,64 +94,77 @@ const CodingNow: React.FC = () => {
   const currentRepo = websites.find(site =>
     site.name === lastPush?.repo.split('/')[1]
   );
+  const repoUrl = lastPush ? `https://github.com/${lastPush.repo}` : null;
+  const liveUrl = currentRepo?.homepageUrl;
 
   return (
-    <div className="p-6 md:p-8 space-y-6">
-      <h2 className="gradient-text">Currently Working On</h2>
+    <div className="min-w-0 p-4 sm:p-6 md:p-8 space-y-6">
+      <h2 className="gradient-text text-xl sm:text-2xl">Currently Working On</h2>
 
       {lastPush && (
         <div>
-          <div className="glass-card w-full flex flex-col px-6 py-2 md:flex-row md:items-center md:justify-between gap-2">
-            <div>
-              <div className="flex items-center gap-2">
+          <div className="glass-card w-full max-w-full overflow-hidden flex flex-col px-4 sm:px-6 py-3 md:flex-row md:items-center md:justify-between gap-4">
+            <div className="min-w-0">
+              <div className="flex flex-wrap items-center gap-2">
                 <span className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></span>
-                <div className="text-sm flex flex-col">
+                <div className="text-xs sm:text-sm flex flex-col min-w-0">
                   <span>
                     Last commit to{' '}
-                    <span className="relative group inline-block">
+                    <span className="relative group inline">
                       <a
                         href={`https://github.com/${lastPush.repo}`}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="font-semibold text-[var(--primary)] hover:underline"
+                        className="font-semibold text-[var(--primary)] hover:underline break-words"
                       >
-                        {lastPush.repo.split('/')[1]}&nbsp;
+                        {lastPush.repo.split('/')[1]}
                       </a>
                     </span>
                   </span>
-                  {formatDistanceToNow(new Date(lastPush.time), { addSuffix: true })}
+                  <span className="text-[var(--muted)]">
+                    {formatDistanceToNow(new Date(lastPush.time), { addSuffix: true })}
+                  </span>
                 </div>
               </div>
-              <p className="text-xs text-[var(--muted)] mt-1">
+              <p className="text-xs text-[var(--muted)] mt-2 break-words">
                 <strong>Commit message:</strong> {lastPush.message}
               </p>
             </div>
-            <a
-              href={lastPush.url}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-[var(--primary)] hover:underline text-xs"
-            >
-              View Commit →
-            </a>
+         
           </div>
           <span className="text-xs text-[var(--muted)]">Powered by GitHub Webhook and Redis</span>
         </div>
       )}
 
       
-        <p className='font-semibold text-sm'>Live view of project based on the latest commit</p>
+        <p className='font-semibold text-sm sm:text-base'>Live view of project based on the latest commit</p>
 
-            <iframe
-              src={currentRepo?.homepageUrl}
-              title='live project window'
-              allowFullScreen
-              width="100%"
-              height="300"
-              referrerPolicy='no-referrer'
-              className="bg-none rounded-lg border-2 border-slate-300"
-              loading="lazy"
-            />
+        {liveUrl ? (
+          <iframe
+            src={liveUrl}
+            title='live project window'
+            allowFullScreen
+            referrerPolicy='no-referrer'
+            className="w-full h-[240px] sm:h-[300px] md:h-[360px] bg-none rounded-lg border-2 border-slate-300"
+            loading="lazy"
+          />
+        ) : (
+          repoUrl && (
+            <div className="glass-card w-full max-w-full overflow-hidden px-4 sm:px-6 py-4">
+              <p className="text-xs text-[var(--muted)]">
+                No live link available for this project.
+              </p>
+              <a
+                href={repoUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-[var(--primary)] hover:underline text-sm"
+              >
+                View repository →
+              </a>
+            </div>
+          )
+        )}
     </div>
   );
 };
