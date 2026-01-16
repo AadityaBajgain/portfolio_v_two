@@ -25,7 +25,6 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         {children}
-        <div className="fixed inset-0 -z-10 h-full w-full bg-[var(--background)] [background-image:radial-gradient(var(--muted)_1px,transparent_1px)] [background-size:16px_16px]"></div>
       </body>
     </html>
   );
