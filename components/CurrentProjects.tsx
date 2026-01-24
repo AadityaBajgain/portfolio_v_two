@@ -99,7 +99,7 @@ const CodingNow: React.FC = () => {
 
   return (
     <div className="max-w-7xl p-4 sm:p-6 md:p-8 space-y-6">
-      <h2 className="gradient-text text-xl sm:text-2xl">Currently Working On</h2>
+      <h2 className="gradient-text">Currently Working On</h2>
 
       {lastPush && (
         <div>
