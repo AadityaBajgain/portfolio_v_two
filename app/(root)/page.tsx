@@ -1,5 +1,4 @@
-import Education from "@/components/Education";
-import Experience from "@/components/Experience";
+import AboutMe from "@/components/AboutMe";
 import Projects from "@/components/Projects";
 import CodingNow from "@/components/CurrentProjects";
 import HeroSection from "@/components/HeroSection";
@@ -22,10 +21,7 @@ export default function Home() {
       {/* Experience & Education */}
       <section className="section-container min-h-screen">
         <h1 className="mb-5">About Me</h1>
-        <div className="grid md:grid-cols-2 gap-8">
-          <Education />
-          <Experience />
-        </div>
+        <AboutMe />
       </section>
 
       <section className="section-container min-h-sccreen">
