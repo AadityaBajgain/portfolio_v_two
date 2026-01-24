@@ -3,7 +3,7 @@ import React from "react";
 const AboutMe: React.FC = () => {
   return (
     <div className="space-y-8 p-6">
-      <div className="max-w-[45vw] space-y-4">
+      <div className="max-w-3xl space-y-4">
         <h2 className="gradient-text">Who Am I</h2>
         <p className="text-[var(--text-secondary)]">
           I’m a Computer Science student with a strong interest in AI, Machine
