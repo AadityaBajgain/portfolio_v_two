@@ -4,8 +4,22 @@ import Particles, { initParticlesEngine } from "@tsparticles/react";
 import { loadSlim } from "@tsparticles/slim";
 import { type ISourceOptions, type Container } from "@tsparticles/engine";
 
+const getThemeColors = () => {
+  const styles = getComputedStyle(document.documentElement);
+  const background = styles.getPropertyValue("--background").trim() || "#0d1117";
+  const particle = styles.getPropertyValue("--particle-color").trim() || "#ffffff";
+  const link = styles.getPropertyValue("--particle-link").trim() || particle;
+
+  return { background, particle, link };
+};
+
 const ParticleBackground = () => {
   const [init, setInit] = useState(false);
+  const [themeColors, setThemeColors] = useState({
+    background: "#0d1117",
+    particle: "#ffffff",
+    link: "#ffffff",
+  });
 
   // This should only run once to initialize the engine
   useEffect(() => {
@@ -14,6 +28,46 @@ const ParticleBackground = () => {
     }).then(() => {
       setInit(true);
     });
+  }, []);
+
+  useEffect(() => {
+    const updateColors = () => {
+      setThemeColors(getThemeColors());
+    };
+
+    updateColors();
+
+    const media = window.matchMedia("(prefers-color-scheme: dark)");
+    const handleMediaChange = () => updateColors();
+
+    if (media.addEventListener) {
+      media.addEventListener("change", handleMediaChange);
+    } else {
+      media.addListener(handleMediaChange);
+    }
+
+    const observer = new MutationObserver((mutations) => {
+      for (const mutation of mutations) {
+        if (mutation.type === "attributes" && mutation.attributeName === "class") {
+          updateColors();
+          break;
+        }
+      }
+    });
+
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    });
+
+    return () => {
+      if (media.removeEventListener) {
+        media.removeEventListener("change", handleMediaChange);
+      } else {
+        media.removeListener(handleMediaChange);
+      }
+      observer.disconnect();
+    };
   }, []);
 
   const particlesLoaded = async (container?: Container): Promise<void> => {
@@ -29,7 +83,7 @@ const ParticleBackground = () => {
       },
       background: {
         color: {
-          value: "var(--background)", // Match your portfolio theme
+          value: themeColors.background,
         },
       },
       fpsLimit: 120,
@@ -44,9 +98,9 @@ const ParticleBackground = () => {
         },
       },
       particles: {
-        color: { value: "var(--foreground)" },
+        color: { value: themeColors.particle },
         links: {
-          color: "var(--foreground)",
+          color: themeColors.link,
           distance: 150,
           enable: true,
           opacity: 0.5,
@@ -70,7 +124,7 @@ const ParticleBackground = () => {
       },
       detectRetina: true,
     }),
-    []
+    [themeColors]
   );
 
   if (init) {

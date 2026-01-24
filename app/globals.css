@@ -4,9 +4,11 @@
 :root {
   --background: #fafbfc;
   --card-background: #ffffff;
-  --foreground: #18181b;
+  --foreground: #000000;
   --primary: #0f766e;
   --secondary: #6366f1;
+  --particle-color: #0f766e;
+  --particle-link: #6366f1;
   --accent: #f97316;
   --muted: #94a3b8;
   --border: #e2e8f0;
@@ -18,6 +20,8 @@
 :root.dark {
   --background: #000000;
   --foreground: #ffffff;
+  --particle-color: #5142d2;
+  --particle-link: #818cf8;
   --text-primary: #f7fafc;
   --text-secondary: #e2e8f0;
   --cloud-bg: rgba(30, 41, 59, 0.95);
@@ -25,11 +29,13 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #000205;
+    --background: #000000;
     --card-background: #1e293b;
     --foreground: #f8fafc;
     --primary: #5142d2;
     --secondary: #818cf8;
+    --particle-color: #5142d2;
+    --particle-link: #818cf8;
     --accent: #fb923c;
     --muted: #64748b;
     --border: #334155;
