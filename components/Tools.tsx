@@ -8,7 +8,11 @@ const style = {
 }
 const Tools = () => {
   return (
-    <div className="p-6 flex flex-wrap md:p-8 space-y-6 gap-10 justify-between">
+    <div className="p-6 md:p-8 space-y-6">
+      <p className="text-[var(--text-secondary)]">
+        These are the tools that I use to build, test, and ship software.
+      </p>
+      <div className="flex flex-wrap gap-10 justify-between">
       <div>
         <h2 className="gradient-text">Languages that I use</h2>
         <div className="mt-5 flex flex-col gap-5">
@@ -78,6 +82,7 @@ const Tools = () => {
             style={style}
           />
         </div>
+      </div>
       </div>
     </div>
   )
