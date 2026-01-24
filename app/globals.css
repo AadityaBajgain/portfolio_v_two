@@ -64,7 +64,7 @@
 
 @layer components {
   .section-container {
-    @apply max-w-7xl h-fit px-4 py-15 md:py-20;
+    @apply h-fit px-4 py-15 md:py-20;
   }
 
   /* .card {

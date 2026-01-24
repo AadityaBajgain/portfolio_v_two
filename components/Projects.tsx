@@ -48,17 +48,17 @@ const Projects: React.FC = () => {
   }
 
   return (
-    <div className="p-6 md:p-8 space-y-6">
+    <div className="p-6 max-w-[90vw] md:p-8 space-y-6">
       <h2 className="gradient-text">GitHub&apos;s Pinned Repos</h2>
       <div className="space-y-4">
         {repos.map((repo, index) => (
           <div
             key={index}
-            className=" p-4 border-l-4 border-[var(--primary)] rounded-lg hover:shadow-slate-400 shadow-lg bottom-2 right-2 transition-all duration-300"
+            className="p-4 border-l-4 border-[var(--primary)] rounded-lg hover:shadow-slate-400 shadow-lg bottom-2 right-2 transition-all duration-300"
           >
-            <div className="max-w-full flex flex-col gap-2">
+            <div className="flex flex-col gap-2">
               <div className="flex items-start justify-between gap-3">
-                <h3 className="min-w-0 flex-1 break-words font-semibold">
+                <h3 className="min-w-0 flex-1 break-words font-semibold  ">
                   {repo.name}
                 </h3>
                 <a
