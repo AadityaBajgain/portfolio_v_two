@@ -4,14 +4,19 @@ import Projects from '@/components/Projects';
 import CodingNow from '@/components/CurrentProjects';
 import HeroSection from '@/components/HeroSection';
 import Tools from '@/components/Tools';
-import TodayThought from '@/components/TodayThought';
 import Contact from '@/components/Contact';
+import ParticleBackground from '@/components/ui/particleBackground.';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 export default function Home() {
   return (
     <main className="min-h-screen">
-      <section className="section-container min-h-screen flex flex-col lg:justify-center">
-        <TodayThought/>
-        <HeroSection />
+      <Navbar/>
+      <ParticleBackground/>
+      <section className="section-container min-h-screen flex flex-col lg:justify-center relative overflow-hidden">
+        <div className="relative z-10">
+          <HeroSection />
+        </div>
       </section>
 
       {/* Experience & Education */}
@@ -43,7 +48,7 @@ export default function Home() {
           <Contact />
         </div>
       </section>
-     
+      <Footer/>
     </main>
   );
 }

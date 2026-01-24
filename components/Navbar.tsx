@@ -1,6 +1,7 @@
 "use client"
 import React from 'react'
 import Link from 'next/link'
+import TodayThought from './TodayThought'
 
 const Navbar:React.FC = () => {
 
@@ -12,6 +13,7 @@ const Navbar:React.FC = () => {
           <Link href="/">Aaditya Bajgain</Link>
         </h1>
       </div>
+      <TodayThought/>
     </nav>
   )
 }
