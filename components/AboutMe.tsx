@@ -26,7 +26,7 @@ const AboutMe: React.FC = () => {
             Student Developer • 2023 – Present
           </span>
           <span className="rounded-md border border-[var(--border)] bg-[var(--card-background)] px-3 py-1">
-            Learning: Machine Learning Foundation
+            Currently Learning: Machine Learning Foundation
           </span>
         </div>
       </div>
