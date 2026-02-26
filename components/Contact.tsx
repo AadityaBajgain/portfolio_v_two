@@ -1,7 +1,6 @@
 'use client';
 
 import React, { useState, ChangeEvent, FormEvent } from 'react';
-import Image from 'next/image';
 import Link from 'next/link';
 import emailjs from '@emailjs/browser';
 
