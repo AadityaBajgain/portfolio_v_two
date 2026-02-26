@@ -23,12 +23,12 @@ const HeroSection:React.FC = () => {
             <div className="flex gap-4 justify-center md:justify-start">
               <Link href="https://github.com/AadityaBajgain"
                 className="button flex items-center gap-2">
-                <Image src="https://skillicons.dev/icons?i=github" alt="GitHub" width={20} height={20} unoptimized/>
+                <Image src="github_dark.svg" alt="GitHub" width={20} height={20} unoptimized/>
                 GitHub
               </Link>
               <Link href="https://linkedin.com/in/aadityabajgain"
                 className="button flex items-center gap-2">
-                <Image src="https://skillicons.dev/icons?i=linkedin" alt="LinkedIn" width={20} height={20} unoptimized/>
+                <Image src="linkedin.svg" alt="LinkedIn" width={20} height={20} unoptimized/>
                 LinkedIn
               </Link>
             </div>
