@@ -98,13 +98,13 @@ const CodingNow: React.FC = () => {
   const liveUrl = currentRepo?.homepageUrl;
 
   return (
-    <div className="min-w-0 p-4 sm:p-6 md:p-8 space-y-6">
-      <h2 className="gradient-text text-xl sm:text-2xl">Currently Working On</h2>
+    <div className="max-w-7xl p-4 sm:p-6 md:p-8 space-y-6">
+      <h2 className="gradient-text">Currently Working On</h2>
 
       {lastPush && (
         <div>
-          <div className="glass-card w-full max-w-full overflow-hidden flex flex-col px-4 sm:px-6 py-3 md:flex-row md:items-center md:justify-between gap-4">
-            <div className="min-w-0">
+          <div className="glass-card max-w-full overflow-hidden flex flex-col px-4 sm:px-6 py-3 md:flex-row md:items-center md:justify-between gap-4">
+            
               <div className="flex flex-wrap items-center gap-2">
                 <span className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></span>
                 <div className="text-xs sm:text-sm flex flex-col min-w-0">
@@ -129,7 +129,6 @@ const CodingNow: React.FC = () => {
               <p className="text-xs text-[var(--muted)] mt-2 break-words">
                 <strong>Commit message:</strong> {lastPush.message}
               </p>
-            </div>
          
           </div>
           <span className="text-xs text-[var(--muted)]">Powered by GitHub Webhook and Redis</span>
