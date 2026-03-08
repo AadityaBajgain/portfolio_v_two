@@ -5,31 +5,25 @@ import React from "react";
 const skillGroups = [
   {
     title: "Core Languages",
-    subtitle: "Systems, scripting, and runtime fluency.",
+    subtitle: "Languages that I learned till now.",
     items: ["Java", "Python", "JavaScript", "TypeScript", "C++", "C"],
     accent: "from-emerald-400 to-teal-600",
   },
   {
-    title: "Web Foundations",
-    subtitle: "Accessible, performant UI baselines.",
-    items: ["HTML", "CSS"],
-    accent: "from-amber-400 to-orange-500",
-  },
-  {
     title: "Frameworks",
-    subtitle: "Modern stacks for product velocity.",
+    subtitle: "Modern stacks for faster development.",
     items: ["React", "Next.js", "Vite", "Tailwind", "Bootstrap"],
     accent: "from-indigo-400 to-sky-500",
   },
   {
     title: "Data & Cloud",
-    subtitle: "Reliable storage and real-time sync.",
+    subtitle: "Databases that I have experience of.",
     items: ["Firebase", "MongoDB", "MySQL"],
     accent: "from-fuchsia-400 to-rose-500",
   },
   {
     title: "Dev Tools",
-    subtitle: "Fast feedback loops and clean shipping.",
+    subtitle: "IDE and other development tools I use",
     items: ["VS Code", "Git", "GitHub", "Postman"],
     accent: "from-lime-400 to-emerald-500",
   },
@@ -58,42 +52,11 @@ const Tools: React.FC = () => {
         <div className="space-y-6">
           <div className="space-y-3">
             <h2 className="gradient-text">Tools That I Use</h2>
-            <p className="text-[var(--text-secondary)]">
-              A compact, modern toolkit optimized for rapid prototyping, clean
-              interfaces, and dependable releases. These are the technologies I
-              reach for when turning ideas into real products.
+            <p className="text-md">
+              These are tools I know well and use often. I have used them in real projects and hands-on work.
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-3">
-            {highlights.map((highlight) => (
-              <span
-                key={highlight}
-                className="rounded-full border border-[var(--border)] bg-white/70 px-4 py-1 text-xs font-medium text-[var(--text-primary)] shadow-sm backdrop-blur dark:bg-black/30"
-              >
-                {highlight}
-              </span>
-            ))}
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2">
-            <div className="rounded-2xl border border-[var(--border)] bg-white/70 p-4 shadow-sm dark:bg-black/30">
-              <p className="text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
-                Focus
-              </p>
-              <p className="mt-2 text-sm text-[var(--text-secondary)]">
-                AI-driven apps, developer tools, and product engineering.
-              </p>
-            </div>
-            <div className="rounded-2xl border border-[var(--border)] bg-white/70 p-4 shadow-sm dark:bg-black/30">
-              <p className="text-xs uppercase tracking-[0.2em] text-[var(--muted)]">
-                Workflow
-              </p>
-              <p className="mt-2 text-sm text-[var(--text-secondary)]">
-                Design fast, ship clean, iterate with data.
-              </p>
-            </div>
-          </div>
         </div>
 
         <div className="grid gap-5 sm:grid-cols-2">
@@ -104,10 +67,10 @@ const Tools: React.FC = () => {
             >
               <div className="flex items-start justify-between gap-3">
                 <div className="space-y-1">
-                  <h3 className="text-lg font-semibold text-[var(--text-primary)]">
+                  <h3 className="text-lg font-semibold">
                     {group.title}
                   </h3>
-                  <p className="text-sm text-[var(--text-secondary)]">
+                  <p className="text-sm">
                     {group.subtitle}
                   </p>
                 </div>
@@ -121,7 +84,7 @@ const Tools: React.FC = () => {
                 {group.items.map((item) => (
                   <span
                     key={item}
-                    className="rounded-full border border-[var(--border)] bg-white/70 px-3 py-1 text-xs font-medium text-[var(--text-primary)] shadow-sm backdrop-blur dark:bg-black/30"
+                    className="rounded-full border border-[var(--border)] bg-white/70 px-3 py-1 text-xs font-medium shadow-sm backdrop-blur dark:bg-black/30"
                   >
                     {item}
                   </span>
