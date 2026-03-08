@@ -43,8 +43,6 @@ const TodayThought = () => {
     };
 
     fetchData();
-    const intervalId = setInterval(fetchData, 30000);
-    return () => clearInterval(intervalId);
   }, []);
   console.log(thought?.timestamp);
   if (loading) {
