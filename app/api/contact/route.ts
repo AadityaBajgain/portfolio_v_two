@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { Redis } from '@upstash/redis';
+import { ExpireAtCommand, ExpireCommand, Redis } from '@upstash/redis';
 import { randomUUID } from 'crypto';
 
 const redis = new Redis({
@@ -50,7 +50,7 @@ export async function POST(request: NextRequest) {
     };
 
     await redis.lpush(CONTACT_KEY, JSON.stringify(entry));
-
+    await redis.expire(CONTACT_KEY, 86400)
     return NextResponse.json({ success: true });
   } catch (error) {
     console.error('Contact form submission failed:', error);

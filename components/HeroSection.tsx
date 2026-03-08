@@ -16,7 +16,7 @@ const HeroSection:React.FC = () => {
           loading="eager"
           draggable={false}
         />
-       <div className="space-y-4 text-center md:text-left">
+      <div className="space-y-4 text-center md:text-left">
             <h1>Hey!</h1>
             <h1 className="gradient-text">I&apos;m Aaditya Bajgain</h1>
             <h2 className="text-[var(--muted)]">An Inspiring Student & Software Engineer</h2>
