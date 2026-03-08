@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { ExpireAtCommand, ExpireCommand, Redis } from '@upstash/redis';
+import { Redis } from '@upstash/redis';
 import { randomUUID } from 'crypto';
 
 const redis = new Redis({
