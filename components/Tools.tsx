@@ -29,13 +29,6 @@ const skillGroups = [
   },
 ];
 
-const highlights = [
-  "AI-powered prototypes",
-  "API-first thinking",
-  "Reliable UI delivery",
-  "Performance-minded builds",
-];
-
 const Tools: React.FC = () => {
   return (
     <div className="relative overflow-hidden p-6 md:p-10">
