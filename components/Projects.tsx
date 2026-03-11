@@ -71,7 +71,7 @@ const Projects: React.FC = () => {
                 </a>
               </div>
               
-              <p className="text-sm text-white">
+              <p className="text-sm">
                 {repo.description || 'No description available'}
               </p>
               
