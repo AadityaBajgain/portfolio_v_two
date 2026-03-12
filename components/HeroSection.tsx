@@ -11,24 +11,24 @@ const HeroSection:React.FC = () => {
           alt="photo"
           width={200}
           height={200}
-          className="rounded-full opacity-100 object-cover w-[35vw] sm:w-1/3 md:w-1/4 lg:w-1/4 xl:w-1/4 shadow-lg"
+          className="rounded-full opacity-100 object-cover w-[35vw] sm:w-1/3 md:w-1/4 lg:w-1/4 xl:w-1/4"
           priority
           loading="eager"
           draggable={false}
         />
-       <div className="space-y-4 text-center md:text-left">
+      <div className="space-y-4 text-center md:text-left">
             <h1>Hey!</h1>
             <h1 className="gradient-text">I&apos;m Aaditya Bajgain</h1>
             <h2 className="text-[var(--muted)]">An Inspiring Student & Software Engineer</h2>
             <div className="flex gap-4 justify-center md:justify-start">
               <Link href="https://github.com/AadityaBajgain"
                 className="button flex items-center gap-2">
-                <Image src="https://skillicons.dev/icons?i=github" alt="GitHub" width={20} height={20} unoptimized/>
+                <Image src="github_dark.svg" alt="GitHub" width={20} height={20} unoptimized/>
                 GitHub
               </Link>
               <Link href="https://linkedin.com/in/aadityabajgain"
                 className="button flex items-center gap-2">
-                <Image src="https://skillicons.dev/icons?i=linkedin" alt="LinkedIn" width={20} height={20} unoptimized/>
+                <Image src="linkedin.svg" alt="LinkedIn" width={20} height={20} unoptimized/>
                 LinkedIn
               </Link>
             </div>

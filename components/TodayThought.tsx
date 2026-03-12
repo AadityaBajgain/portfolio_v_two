@@ -43,8 +43,6 @@ const TodayThought = () => {
     };
 
     fetchData();
-    const intervalId = setInterval(fetchData, 30000);
-    return () => clearInterval(intervalId);
   }, []);
   console.log(thought?.timestamp);
   if (loading) {
@@ -99,7 +97,7 @@ const TodayThought = () => {
             </div>
           )}
         </div>
-<p className="relative opacity-0 text-[8px] sm:text-[10px] text-sm group-hover:opacity-100 text-white transition-colors duration-200">
+<p className="relative opacity-0 text-[8px] sm:text-[10px] text-sm group-hover:opacity-100 text-[var(--muted)] transition-colors duration-200">
           Powered by <a
           href="https://github.com/Prashant-koi/PersonalStatus"
           target="_blank"
