@@ -5,7 +5,7 @@ const AboutMe: React.FC = () => {
     <div className="space-y-8 p-6">
       <div className="max-w-3xl space-y-4">
         <h2 className="gradient-text">Who Am I</h2>
-        <p className="text-[var(--text-secondary)]">
+        <p>
           I’m a Computer Science student with a strong interest in AI, Machine
           Learning, and full-stack development, driven by curiosity and
           problem-solving. I enjoy building AI-powered, real-world applications
@@ -13,7 +13,7 @@ const AboutMe: React.FC = () => {
           experiences. My current toolkit includes Python, JavaScript, React,
           and Node.js, and I keep learning through hands-on projects.
         </p>
-        <p className="text-[var(--text-secondary)]">
+        <p>
           I’m seeking internships and research opportunities in AI or software
           engineering where I can bridge research ideas with practical
           engineering and contribute to meaningful, user-focused software.

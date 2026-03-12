@@ -103,11 +103,11 @@ const CodingNow: React.FC = () => {
 
       {lastPush && (
         <div>
-          <div className="glass-card max-w-full overflow-hidden flex flex-col px-4 sm:px-6 py-3 md:flex-row md:items-center md:justify-between gap-4">
+          <div className="glass-card max-w-full overflow-hidden flex flex-col px-4 sm:px-6 py-3 md:justify-between gap-4">
             
-              <div className="flex flex-wrap items-center gap-2">
+              <div className="flex flex-row justify-start items-center gap-2">
                 <span className="w-3 h-3 rounded-full bg-green-500 animate-pulse"></span>
-                <div className="text-xs sm:text-sm flex flex-col min-w-0">
+                <div className="text-xs sm:text-sm flex flex-row min-w-0 gap-5">
                   <span>
                     Last commit to{' '}
                     <span className="relative group inline">
